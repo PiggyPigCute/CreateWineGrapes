@@ -1,6 +1,7 @@
 package com.piggypig.createwinegrapes.items;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
+import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -29,6 +30,7 @@ public class ModCreativeTabs {
                         }
                         output.accept(ModItems.STEM);
                         output.accept(ModItems.GRAPE);
+                        output.accept(ModBlocks.MECHANICAL_DESTEMMER);
                     })
                     .build());
 

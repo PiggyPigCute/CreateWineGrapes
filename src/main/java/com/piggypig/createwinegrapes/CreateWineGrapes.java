@@ -1,7 +1,10 @@
 package com.piggypig.createwinegrapes;
 
+import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
+import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
 import com.piggypig.createwinegrapes.items.ModItems;
+import com.piggypig.createwinegrapes.recipes.ModRecipes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -33,6 +36,9 @@ public class CreateWineGrapes {
 
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
+        ModRecipes.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
