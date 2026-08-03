@@ -16,6 +16,9 @@ public class ModItems {
     public static final DeferredItem<Item> GRAPE = ITEMS.register("grape",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).build())));
 
+    public static final DeferredItem<Item> STEM = ITEMS.register("stem",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
