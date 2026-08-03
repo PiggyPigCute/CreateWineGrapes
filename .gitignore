@@ -38,3 +38,6 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+### PiggyPig perso ###
+**/src/main/resources/assets/create_wine_grapes/gimps
