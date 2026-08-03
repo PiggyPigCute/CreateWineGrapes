@@ -13,17 +13,24 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CreateWineGrapes.MOD_ID);
 
-    public static final DeferredItem<BunchOfGrapesItem> BUNCH_OF_GRAPES = ITEMS.register("bunch_of_grapes",
+    public static final DeferredItem<BunchOfGrapesItem> BUNCH_OF_GRAPES = ITEMS.register(
+            "bunch_of_grapes",
             () -> new BunchOfGrapesItem(new Item.Properties()
                     .stacksTo(1)
-                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(BunchOfGrapesItem.MAX_GRAPES))));
+                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(BunchOfGrapesItem.MAX_GRAPES))
+            )
+    );
 
-    public static final DeferredItem<Item> GRAPE = ITEMS.register("grape",
+    public static final DeferredItem<Item> GRAPE = ITEMS.register(
+            "grape",
             () -> new Item(new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(1)
                             .saturationModifier(0.1f)
-                            .build())));
+                            .build()
+                    )
+            )
+    );
 
     public static final DeferredItem<Item> STEM = ITEMS.register("stem",
             () -> new Item(new Item.Properties()));
