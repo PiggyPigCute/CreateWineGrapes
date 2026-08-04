@@ -27,6 +27,7 @@ public class BunchOfGrapesItem extends Item {
 
     public static void setGrapeCount(ItemStack stack, int count) {
         stack.set(ModDataComponents.GRAPE_COUNT.get(), Math.max(0, count));
+        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(count));
     }
 
     @Override
@@ -41,7 +42,6 @@ public class BunchOfGrapesItem extends Item {
         ItemStack resultHandStack;
 
         if (remainingGrapes > 0) {
-            heldStack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(remainingGrapes));
             setGrapeCount(heldStack, remainingGrapes);
             resultHandStack = heldStack;
         } else {
