@@ -7,7 +7,9 @@ modId="create_wine_grapes"
 version="${file.jarVersion}"
 displayName="Create: Wine & Grapes"
 description='''
-TODO
+🍷🍇 Create: Wine & Grapes
+⚙🔧 a Minecraft Create Addon
+🐷⚔ by PiggyPig and Binau
 '''
 
 [[dependencies.create_wine_grapes]]
