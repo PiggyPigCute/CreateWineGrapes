@@ -3,6 +3,7 @@ package com.piggypig.createwinegrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
+import com.piggypig.createwinegrapes.items.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
 import org.slf4j.Logger;
@@ -34,6 +35,7 @@ public class CreateWineGrapes {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModDataComponents.register(modEventBus);
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModRecipes.register(modEventBus);
