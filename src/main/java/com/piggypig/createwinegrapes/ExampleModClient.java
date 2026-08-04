@@ -1,6 +1,8 @@
 package com.piggypig.createwinegrapes;
 
+import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -9,6 +11,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = CreateWineGrapes.MOD_ID, dist = Dist.CLIENT)
@@ -27,5 +30,9 @@ public class ExampleModClient {
         // Some client setup code
         CreateWineGrapes.LOGGER.info("HELLO FROM CLIENT SETUP");
         CreateWineGrapes.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+        event.enqueueWork(() ->
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout())
+        );
     }
 }

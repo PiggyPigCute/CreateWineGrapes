@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "create_wine_grapes:block/mechanical_destemmer"
+    },
+    "axis=x": {
+      "model": "create_wine_grapes:block/mechanical_destemmer",
+      "y": 90
+    }
+  }
+}
