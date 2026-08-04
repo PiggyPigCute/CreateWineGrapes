@@ -18,6 +18,7 @@ public class ModItems {
             () -> new BunchOfGrapesItem(new Item.Properties()
                     .stacksTo(1)
                     .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(BunchOfGrapesItem.MAX_GRAPES))
+                    .component(ModDataComponents.GRAPE_COUNT.get(), 6)
             )
     );
 
