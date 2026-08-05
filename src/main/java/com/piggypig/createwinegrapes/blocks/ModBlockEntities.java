@@ -11,9 +11,9 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<MechanicalDestemmerBlockEntity> MECHANICAL_DESTEMMER =
             CreateWineGrapes.REGISTRATE
                     .blockEntity("mechanical_destemmer", MechanicalDestemmerBlockEntity::new)
+                    .visual(() -> MechanicalDestemmerVisual::new)
                     .validBlocks(ModBlocks.MECHANICAL_DESTEMMER)
                     .renderer(() -> MechanicalDestemmerRenderer::new)
-                    .visual(() -> MechanicalDestemmerVisual::new)
                     .register();
 
     public static void register() {}

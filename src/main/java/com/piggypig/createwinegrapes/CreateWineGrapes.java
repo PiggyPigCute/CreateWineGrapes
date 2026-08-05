@@ -8,6 +8,8 @@ import com.piggypig.createwinegrapes.items.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -28,7 +30,8 @@ public class CreateWineGrapes {
     public static final String MOD_ID = "create_wine_grapes";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
+            .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
 
     public CreateWineGrapes(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
@@ -45,8 +48,8 @@ public class CreateWineGrapes {
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModRecipes.register(modEventBus);
-//        ModBlocks.register(modEventBus);
-//        ModBlockEntities.register(modEventBus);
+        ModBlocks.register();
+        ModBlockEntities.register();
         ModRenderers.register(modEventBus);
 
         // Register the item to a creative tab
