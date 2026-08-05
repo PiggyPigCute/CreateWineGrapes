@@ -4,11 +4,11 @@
     "layer0": "create_wine_grapes:item/bunch_of_grapes/red_6"
   },
   "overrides": [
-    { "predicate": { "custom_model_data": 1 }, "model": "create_wine_grapes:item/bunch_of_grapes_1" },
-    { "predicate": { "custom_model_data": 2 }, "model": "create_wine_grapes:item/bunch_of_grapes_2" },
-    { "predicate": { "custom_model_data": 3 }, "model": "create_wine_grapes:item/bunch_of_grapes_3" },
-    { "predicate": { "custom_model_data": 4 }, "model": "create_wine_grapes:item/bunch_of_grapes_4" },
-    { "predicate": { "custom_model_data": 5 }, "model": "create_wine_grapes:item/bunch_of_grapes_5" },
-    { "predicate": { "custom_model_data": 6 }, "model": "create_wine_grapes:item/bunch_of_grapes_6" }
+    { "predicate": { "custom_model_data": 1 }, "model": "create_wine_grapes:item/bunch_of_grapes/1" },
+    { "predicate": { "custom_model_data": 2 }, "model": "create_wine_grapes:item/bunch_of_grapes/2" },
+    { "predicate": { "custom_model_data": 3 }, "model": "create_wine_grapes:item/bunch_of_grapes/3" },
+    { "predicate": { "custom_model_data": 4 }, "model": "create_wine_grapes:item/bunch_of_grapes/4" },
+    { "predicate": { "custom_model_data": 5 }, "model": "create_wine_grapes:item/bunch_of_grapes/5" },
+    { "predicate": { "custom_model_data": 6 }, "model": "create_wine_grapes:item/bunch_of_grapes/6" }
   ]
 }
