@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "create_wine_grapes:block/vine/vine" },
+      { "model": "create_wine_grapes:block/vine/vine", "y": 90 },
+      { "model": "create_wine_grapes:block/vine/vine", "y": 180 },
+      { "model": "create_wine_grapes:block/vine/vine", "y": 270 }
+    ]
+  }
+}

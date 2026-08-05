@@ -23,6 +23,7 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(ModItems.BUNCH_OF_GRAPES.get()))
                     .title(Component.translatable("creativetab.create_wine_grapes.create_wine_grapes_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.VINE);
                         for (int grapeCount = BunchOfGrapesItem.MAX_GRAPES; grapeCount >= 1; grapeCount--) {
                             ItemStack bunchOfGrapes = new ItemStack(ModItems.BUNCH_OF_GRAPES.get());
                             setGrapeCount(bunchOfGrapes, grapeCount);

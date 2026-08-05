@@ -2,6 +2,7 @@ package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmer;
+import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
 import com.piggypig.createwinegrapes.items.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -17,6 +18,17 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(CreateWineGrapes.MOD_ID);
+
+    public static  final DeferredBlock<Block> VINE = registerBlock(
+            "vine",
+            () -> new VineBlock(BlockBehaviour.Properties.of()
+                    .strength(0f,0f)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .noCollission()
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
+            )
+    );
 
     public static final DeferredBlock<Block> MECHANICAL_DESTEMMER = registerBlock(
             "mechanical_destemmer",

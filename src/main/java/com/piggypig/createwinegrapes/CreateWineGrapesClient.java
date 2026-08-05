@@ -17,8 +17,8 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 @Mod(value = CreateWineGrapes.MOD_ID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = CreateWineGrapes.MOD_ID, value = Dist.CLIENT)
-public class ExampleModClient {
-    public ExampleModClient(ModContainer container) {
+public class CreateWineGrapesClient {
+    public CreateWineGrapesClient(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
         // Do not forget to add translations for your config options to the en_us.json file.
@@ -31,8 +31,9 @@ public class ExampleModClient {
         CreateWineGrapes.LOGGER.info("HELLO FROM CLIENT SETUP");
         CreateWineGrapes.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-        event.enqueueWork(() ->
-                ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout())
-        );
+        event.enqueueWork(() -> {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.VINE.get(), RenderType.cutout());
+        });
     }
 }
