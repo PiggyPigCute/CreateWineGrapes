@@ -49,7 +49,7 @@ public class CreateWineGrapes {
         ModCreativeTabs.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModBlocks.register();
-        ModBlockEntities.register();
+        ModBlockEntities.register(modEventBus);
         ModRenderers.register(modEventBus);
 
         // Register the item to a creative tab

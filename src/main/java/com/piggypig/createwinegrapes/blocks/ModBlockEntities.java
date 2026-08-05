@@ -5,6 +5,7 @@ import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerBlockEntit
 import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerRenderer;
 import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.neoforged.bus.api.IEventBus;
 
 public class ModBlockEntities {
 
@@ -16,5 +17,7 @@ public class ModBlockEntities {
                     .renderer(() -> MechanicalDestemmerRenderer::new)
                     .register();
 
-    public static void register() {}
+    public static void register(IEventBus eventBus) {
+        eventBus.addListener(MechanicalDestemmerBlockEntity::registerCapabilities);
+    }
 }
