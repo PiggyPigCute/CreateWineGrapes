@@ -31,7 +31,7 @@ public class MechanicalDestemmer extends KineticBlock implements ICogWheel, IBE<
 
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        return state.getValue(HORIZONTAL_AXIS);
+        return Direction.Axis.Y;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MechanicalDestemmer extends KineticBlock implements ICogWheel, IBE<
 
     // Les deux faces "ports" perpendiculaires à l'axe de rotation
     public Direction getPortA(BlockState state) {
-        return state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.NORTH : Direction.WEST;
+        return state.getValue(HORIZONTAL_AXIS) == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
     }
 
     @Override

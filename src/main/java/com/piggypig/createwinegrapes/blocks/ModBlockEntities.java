@@ -22,5 +22,6 @@ public class ModBlockEntities {
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
+        eventBus.addListener(MechanicalDestemmerBlockEntity::registerCapabilities);
     }
 }
