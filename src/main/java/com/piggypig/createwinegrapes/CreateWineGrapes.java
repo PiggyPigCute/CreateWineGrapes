@@ -3,8 +3,9 @@ package com.piggypig.createwinegrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.blocks.ModRenderers;
+import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
-import com.piggypig.createwinegrapes.items.ModDataComponents;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -51,6 +52,7 @@ public class CreateWineGrapes {
         ModBlocks.register();
         ModBlockEntities.register(modEventBus);
         ModRenderers.register(modEventBus);
+        ModFluids.register();
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

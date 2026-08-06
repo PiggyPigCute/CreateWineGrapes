@@ -1,6 +1,6 @@
 package com.piggypig.createwinegrapes.items.custom;
 
-import com.piggypig.createwinegrapes.items.ModDataComponents;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;

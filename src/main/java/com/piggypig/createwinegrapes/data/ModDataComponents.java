@@ -1,7 +1,8 @@
-package com.piggypig.createwinegrapes.items;
+package com.piggypig.createwinegrapes.data;
 
 import com.mojang.serialization.Codec;
 import com.piggypig.createwinegrapes.CreateWineGrapes;
+import com.piggypig.createwinegrapes.data.custom.MustData;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -21,6 +22,14 @@ public class ModDataComponents {
                     builder -> builder
                             .persistent(Codec.intRange(0, 6))
                             .networkSynchronized(ByteBufCodecs.VAR_INT)
+            );
+
+    public static final Supplier<DataComponentType<MustData>> MUST_DATA =
+            DATA_COMPONENTS.registerComponentType(
+                    "must_data",
+                    builder -> builder
+                            .persistent(MustData.CODEC)
+                            .networkSynchronized(MustData.STREAM_CODEC)
             );
 
     public static void register(IEventBus modEventBus) {

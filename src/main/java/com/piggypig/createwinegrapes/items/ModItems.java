@@ -1,6 +1,7 @@
 package com.piggypig.createwinegrapes.items;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
