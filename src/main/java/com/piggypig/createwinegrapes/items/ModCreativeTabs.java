@@ -32,6 +32,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.STEM);
                         output.accept(ModItems.GRAPE);
                         output.accept(ModBlocks.MECHANICAL_DESTEMMER);
+                        output.accept(ModBlocks.PRESS_BASSIN);
                     })
                     .build());
 

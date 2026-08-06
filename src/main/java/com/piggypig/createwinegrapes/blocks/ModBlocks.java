@@ -1,6 +1,7 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
+import com.piggypig.createwinegrapes.blocks.custom.PressBassinBlock;
 import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmer;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -27,6 +28,18 @@ public class ModBlocks {
     public static final BlockEntry<MechanicalDestemmer> MECHANICAL_DESTEMMER =
             CreateWineGrapes.REGISTRATE
                     .block("mechanical_destemmer", MechanicalDestemmer::new)
+                    .properties(
+                            p -> p
+                                    .strength(2f, 2f)
+                                    .requiresCorrectToolForDrops()
+                                    .noOcclusion()
+                    )
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<PressBassinBlock> PRESS_BASSIN =
+            CreateWineGrapes.REGISTRATE
+                    .block("press_bassin", PressBassinBlock::new)
                     .properties(
                             p -> p
                                     .strength(2f, 2f)
