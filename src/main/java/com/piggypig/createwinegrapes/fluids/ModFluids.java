@@ -9,43 +9,34 @@ public class ModFluids {
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> MUST =
             CreateWineGrapes.REGISTRATE
-                    .fluid("must",
-                            ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/fluid/must_still"),
-                            ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/fluid/must_flow"))
-                    .lang("Must")
+                    .fluid(
+                            "must",
+                            fluid("red_wine"),
+                            fluid("red_wine")
+                    )
+                    .lang("must")
                     .tag(net.minecraft.tags.FluidTags.create(
                             ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "must")))
-//                    .fluidProperties(p -> p
-//                            .density(1050)
-//                            .viscosity(1500)
-//                            .temperature(300))
-//                    .properties(p -> p.block(net.minecraft.world.level.material.PushReaction.DESTROY)) // exemple, à ajuster
-//                    .bucket()
                     .register();
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> ETHANOL =
             CreateWineGrapes.REGISTRATE
-                    .fluid("ethanol", stillTex("ethanol"), flowTex("ethanol"))
-//                    .bucket()
+                    .fluid("ethanol", fluid("ethanol"), fluid("ethanol"))
                     .register();
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> BRANDY =
             CreateWineGrapes.REGISTRATE
-                    .fluid("brandy", stillTex("brandy"), flowTex("brandy"))
-//                    .bucket()
+                    .fluid("brandy", fluid("brandy"), fluid("brandy"))
                     .register();
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> GRAPE_JUICE =
             CreateWineGrapes.REGISTRATE
-                    .fluid("grape_juice", stillTex("grape_juice"), flowTex("grape_juice"))
-//                    .bucket()
+                    .fluid("grape_juice", fluid("grape_juice"), fluid("grape_juice"))
                     .register();
 
-    private static ResourceLocation stillTex(String name) {
-        return ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/fluid/" + name + "_still");
-    }
-    private static ResourceLocation flowTex(String name) {
-        return ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/fluid/" + name + "_flow");
+
+    private static ResourceLocation fluid(String path) {
+        return ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/fluid/" + path);
     }
 
     public static void register() {}

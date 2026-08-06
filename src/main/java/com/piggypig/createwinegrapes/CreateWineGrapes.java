@@ -2,6 +2,7 @@ package com.piggypig.createwinegrapes;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.blocks.ModPartialModels;
 import com.piggypig.createwinegrapes.blocks.ModRenderers;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
@@ -46,6 +47,7 @@ public class CreateWineGrapes {
         REGISTRATE.registerEventListeners(modEventBus);
 
         ModDataComponents.register(modEventBus);
+        ModPartialModels.init();
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModRecipes.register(modEventBus);
