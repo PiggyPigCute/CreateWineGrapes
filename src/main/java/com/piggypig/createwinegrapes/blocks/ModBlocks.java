@@ -1,7 +1,7 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmer;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmer;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.SoundType;
