@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -34,8 +35,8 @@ public class MechanicalDestemmerBlockEntity extends KineticBlockEntity {
 
     private Direction lastInputFace = null;
 
-    public MechanicalDestemmerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.MECHANICAL_DESTEMMER.get(), pos, state);
+    public MechanicalDestemmerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         inputInv = new ItemStackHandler(1);
         capability = new MechanicalDestemmerInventoryHandler();
     }
