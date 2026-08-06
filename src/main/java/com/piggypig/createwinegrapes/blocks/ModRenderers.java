@@ -1,6 +1,6 @@
 package com.piggypig.createwinegrapes.blocks;
 
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerRenderer;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerRenderer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 

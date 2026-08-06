@@ -1,4 +1,4 @@
-package com.piggypig.createwinegrapes.blocks.custom;
+package com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer;
 
 import com.piggypig.createwinegrapes.blocks.ModPartialModels;
 import com.simibubi.create.AllPartialModels;

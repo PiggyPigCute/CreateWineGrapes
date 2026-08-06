@@ -1,9 +1,9 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerBlockEntity;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerRenderer;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerVisual;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerBlockEntity;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerRenderer;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.IEventBus;
 
