@@ -29,6 +29,12 @@
       { "model": "create_wine_grapes:block/vine/stage_4", "y": 90 },
       { "model": "create_wine_grapes:block/vine/stage_4", "y": 180 },
       { "model": "create_wine_grapes:block/vine/stage_4", "y": 270 }
+    ],
+    "stage=5": [
+      { "model": "create_wine_grapes:block/vine/stage_5" },
+      { "model": "create_wine_grapes:block/vine/stage_5", "y": 90 },
+      { "model": "create_wine_grapes:block/vine/stage_5", "y": 180 },
+      { "model": "create_wine_grapes:block/vine/stage_5", "y": 270 }
     ]
   }
 }

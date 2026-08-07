@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class VineBlock extends Block {
-    public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 4);
+    public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 5);
 
     public VineBlock(BlockBehaviour.Properties properties) {
         super(properties);
