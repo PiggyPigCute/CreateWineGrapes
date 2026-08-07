@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "create_wine_grapes:item/bunch_of_grapes/red_3"
+    "layer0": "create_wine_grapes:item/bunch_of_grapes/3"
   }
 }

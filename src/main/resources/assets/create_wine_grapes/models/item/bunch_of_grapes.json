@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "create_wine_grapes:item/bunch_of_grapes/red_6"
+    "layer0": "create_wine_grapes:item/bunch_of_grapes/6"
   },
   "overrides": [
     { "predicate": { "custom_model_data": 1 }, "model": "create_wine_grapes:item/bunch_of_grapes/1" },
