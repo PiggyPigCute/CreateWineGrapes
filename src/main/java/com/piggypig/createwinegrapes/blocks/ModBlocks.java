@@ -19,6 +19,7 @@ public class ModBlocks {
                                     .sound(SoundType.WOOD)
                                     .noOcclusion()
                                     .noCollission()
+                                    .randomTicks()
                                     .offsetType(BlockBehaviour.OffsetType.XZ)
                     )
                     .simpleItem()
