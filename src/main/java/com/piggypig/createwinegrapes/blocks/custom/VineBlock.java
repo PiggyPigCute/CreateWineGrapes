@@ -1,5 +1,7 @@
 package com.piggypig.createwinegrapes.blocks.custom;
 
+import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
@@ -23,15 +26,16 @@ import org.jetbrains.annotations.NotNull;
 public class VineBlock extends Block {
     public static final int MAX_STAGE = 5;
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, MAX_STAGE);
+    public static final EnumProperty<GrapeVariety> GRAPE_VARIETY = EnumProperty.create("grape_variety", GrapeVariety.class);
 
     public VineBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(STAGE, 0));
+        registerDefaultState(stateDefinition.any().setValue(STAGE, 0).setValue(GRAPE_VARIETY, GrapeVariety.NONE));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STAGE);
+        builder.add(STAGE, GRAPE_VARIETY);
     }
 
     @Override
@@ -56,8 +60,11 @@ public class VineBlock extends Block {
         }
 
         if (!level.isClientSide) {
+            ServerLevel serverLevel = (ServerLevel) level;
             ItemStack bunchOfGrapes = new ItemStack(ModItems.BUNCH_OF_GRAPES.get());
             BunchOfGrapesItem.setGrapeCount(bunchOfGrapes, 4 + level.random.nextInt(3));
+            BunchOfGrapesItem.setGrapeVariety(bunchOfGrapes, state.getValue(GRAPE_VARIETY));
+            BunchOfGrapesItem.setVineyard(bunchOfGrapes, Vineyard.sample(serverLevel, pos));
             if (!player.getInventory().add(bunchOfGrapes)) {
                 player.drop(bunchOfGrapes, false);
             }

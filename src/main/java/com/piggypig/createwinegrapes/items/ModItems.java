@@ -2,6 +2,8 @@ package com.piggypig.createwinegrapes.items;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
@@ -20,6 +22,8 @@ public class ModItems {
                     .stacksTo(1)
                     .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(BunchOfGrapesItem.MAX_GRAPES))
                     .component(ModDataComponents.GRAPE_COUNT.get(), 6)
+                    .component(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE)
+                    .component(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT)
             )
     );
 
@@ -31,6 +35,8 @@ public class ModItems {
                             .saturationModifier(0.1f)
                             .build()
                     )
+                    .component(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE)
+                    .component(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT)
             )
     );
 

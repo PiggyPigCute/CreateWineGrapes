@@ -18,7 +18,7 @@ public record MustData(
             0f,
             0f,
             0,
-            new Vineyard(0f, 0f, 0f, 0f)
+            Vineyard.DEFAULT
     );
 
     public static final Codec<MustData> CODEC = RecordCodecBuilder.create(i -> i.group(

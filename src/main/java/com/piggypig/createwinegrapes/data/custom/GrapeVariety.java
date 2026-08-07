@@ -9,7 +9,7 @@ import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
 public enum GrapeVariety implements StringRepresentable {
-    NONE(""),
+    NONE("none"),
     CABERNET_SAUVIGNON("cabernet_sauvignon"),
     TEMPRANILLO("tempranillo"),
     PINOT_NOIR("pinot_noir"),
