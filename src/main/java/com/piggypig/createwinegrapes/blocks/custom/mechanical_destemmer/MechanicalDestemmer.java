@@ -1,4 +1,4 @@
-package com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer;
+package com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.simibubi.create.content.kinetics.base.KineticBlock;

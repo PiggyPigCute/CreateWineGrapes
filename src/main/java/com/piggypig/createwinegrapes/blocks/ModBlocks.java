@@ -1,8 +1,8 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.blocks.custom.PressBassinBlock;
-import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmer;
+import com.piggypig.createwinegrapes.blocks.custom.press_basin.PressBasinBlock;
+import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmer;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.SoundType;
@@ -38,9 +38,9 @@ public class ModBlocks {
                     .simpleItem()
                     .register();
 
-    public static final BlockEntry<PressBassinBlock> PRESS_BASSIN =
+    public static final BlockEntry<PressBasinBlock> PRESS_BASIN =
             CreateWineGrapes.REGISTRATE
-                    .block("press_bassin", PressBassinBlock::new)
+                    .block("press_basin", PressBasinBlock::new)
                     .properties(
                             p -> p
                                     .strength(2f, 2f)

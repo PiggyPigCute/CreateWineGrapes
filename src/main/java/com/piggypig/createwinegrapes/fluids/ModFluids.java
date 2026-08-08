@@ -1,20 +1,21 @@
 package com.piggypig.createwinegrapes.fluids;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.fluids.custom.Must;
+import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
+import com.simibubi.create.content.fluids.VirtualFluid;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 
 public class ModFluids {
 
-    public static final FluidEntry<Must> MUST =
+    public static final FluidEntry<MustFluid> MUST =
             CreateWineGrapes.REGISTRATE
-                    .fluid(
+                    .virtualFluid(
                             "must",
-                            fluid("red_wine"),
-                            fluid("red_wine"),
-                            Must::new
+                            MustFluid.MustFluidType::new,
+                            MustFluid::createSource,
+                            MustFluid::createFlowing
                     )
                     .lang("must")
                     .tag(net.minecraft.tags.FluidTags.create(
@@ -24,17 +25,29 @@ public class ModFluids {
 
     public static final FluidEntry<BaseFlowingFluid.Flowing> ETHANOL =
             CreateWineGrapes.REGISTRATE
-                    .fluid("ethanol", fluid("ethanol"), fluid("ethanol"))
+                    .fluid(
+                            "ethanol",
+                            fluid("ethanol"),
+                            fluid("ethanol")
+                    )
                     .register();
 
-    public static final FluidEntry<BaseFlowingFluid.Flowing> BRANDY =
+    public static final FluidEntry<VirtualFluid> BRANDY =
             CreateWineGrapes.REGISTRATE
-                    .fluid("brandy", fluid("brandy"), fluid("brandy"))
+                    .virtualFluid(
+                            "brandy",
+                            fluid("brandy"),
+                            fluid("brandy")
+                    )
                     .register();
 
-    public static final FluidEntry<BaseFlowingFluid.Flowing> GRAPE_JUICE =
+    public static final FluidEntry<VirtualFluid> GRAPE_JUICE =
             CreateWineGrapes.REGISTRATE
-                    .fluid("grape_juice", fluid("grape_juice"), fluid("grape_juice"))
+                    .virtualFluid(
+                            "grape_juice",
+                            fluid("grape_juice"),
+                            fluid("grape_juice")
+                    )
                     .register();
 
 

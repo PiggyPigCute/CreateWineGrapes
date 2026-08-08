@@ -53,8 +53,10 @@ public class ModCreativeTabs {
                             setGrapeVariety(grape, grapeVariety);
                             output.accept(grape);
                         }
+                        output.accept(ModItems.GRAPE);
+                        output.accept(ModItems.GRAPE_MARC);
                         output.accept(ModBlocks.MECHANICAL_DESTEMMER);
-                        output.accept(ModBlocks.PRESS_BASSIN);
+                        output.accept(ModBlocks.PRESS_BASIN);
                     })
                     .build());
 
