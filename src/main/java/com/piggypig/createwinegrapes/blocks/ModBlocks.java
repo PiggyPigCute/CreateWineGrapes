@@ -1,56 +1,54 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmer;
+import com.piggypig.createwinegrapes.blocks.custom.PressBassinBlock;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmer;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
-import com.piggypig.createwinegrapes.items.ModItems;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS =
-            DeferredRegister.createBlocks(CreateWineGrapes.MOD_ID);
 
-    public static  final DeferredBlock<Block> VINE = registerBlock(
-            "vine",
-            () -> new VineBlock(BlockBehaviour.Properties.of()
-                    .strength(0f,0f)
-                    .sound(SoundType.WOOD)
-                    .noOcclusion()
-                    .noCollission()
-                    .offsetType(BlockBehaviour.OffsetType.XZ)
-            )
-    );
+    public static final BlockEntry<VineBlock> VINE =
+            CreateWineGrapes.REGISTRATE
+                    .block("vine", VineBlock::new)
+                    .properties(
+                            p -> p
+                                    .strength(0f, 0f)
+                                    .sound(SoundType.WOOD)
+                                    .noOcclusion()
+                                    .noCollission()
+                                    .randomTicks()
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    )
+                    .simpleItem()
+                    .register();
 
-    public static final DeferredBlock<Block> MECHANICAL_DESTEMMER = registerBlock(
-            "mechanical_destemmer",
-            () -> new MechanicalDestemmer(BlockBehaviour.Properties.of()
-                    .strength(2f,2f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.WOOD) // TODO
-                    .noOcclusion()
-            )
-    );
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
-    }
+    public static final BlockEntry<MechanicalDestemmer> MECHANICAL_DESTEMMER =
+            CreateWineGrapes.REGISTRATE
+                    .block("mechanical_destemmer", MechanicalDestemmer::new)
+                    .properties(
+                            p -> p
+                                    .strength(2f, 2f)
+                                    .requiresCorrectToolForDrops()
+                                    .noOcclusion()
+                    )
+                    .simpleItem()
+                    .register();
 
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
-    }
+    public static final BlockEntry<PressBassinBlock> PRESS_BASSIN =
+            CreateWineGrapes.REGISTRATE
+                    .block("press_bassin", PressBassinBlock::new)
+                    .properties(
+                            p -> p
+                                    .strength(2f, 2f)
+                                    .requiresCorrectToolForDrops()
+                                    .noOcclusion()
+                    )
+                    .simpleItem()
+                    .register();
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
+    public static void register() {}
 }

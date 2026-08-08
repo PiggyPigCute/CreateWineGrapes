@@ -2,10 +2,16 @@ package com.piggypig.createwinegrapes;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.blocks.ModPartialModels;
+import com.piggypig.createwinegrapes.blocks.ModRenderers;
+import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
-import com.piggypig.createwinegrapes.items.ModDataComponents;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,6 +32,9 @@ public class CreateWineGrapes {
     public static final String MOD_ID = "create_wine_grapes";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
+            .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
+
     public CreateWineGrapes(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -35,12 +44,17 @@ public class CreateWineGrapes {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        REGISTRATE.registerEventListeners(modEventBus);
+
         ModDataComponents.register(modEventBus);
+        ModPartialModels.init();
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModRecipes.register(modEventBus);
-        ModBlocks.register(modEventBus);
+        ModBlocks.register();
         ModBlockEntities.register(modEventBus);
+        ModRenderers.register(modEventBus);
+        ModFluids.register();
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

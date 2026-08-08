@@ -1,7 +1,17 @@
 {
   "block.create_wine_grapes.mechanical_destemmer": "Mechanical Destemmer",
+  "block.create_wine_grapes.press_bassin": "Grape Press Machine",
+  "block.create_wine_grapes.vine": "Vine",
   "creativetab.create_wine_grapes.create_wine_grapes_tab": "Create: Wine & Grapes",
+  "item.create_wine_grapes.brandy_bucket": "Bucket of Brandy",
   "item.create_wine_grapes.bunch_of_grapes": "Bunch of Grapes",
+  "item.create_wine_grapes.ethanol_bucket": "Bucket of Ethanol",
   "item.create_wine_grapes.grape": "Grape",
-  "item.create_wine_grapes.stem": "Grapes stem"
+  "item.create_wine_grapes.grape_juice_bucket": "Bucket of Grape Juice",
+  "item.create_wine_grapes.must_bucket": "Bucket of Must",
+  "item.create_wine_grapes.stem": "Grapes stem",
+  "fluid.create_wine_grapes.brandy": "Brandy",
+  "fluid.create_wine_grapes.ethanol": "Ethanol",
+  "fluid.create_wine_grapes.grape_juice": "Grape Juice",
+  "fluid.create_wine_grapes.must": "Must"
 }

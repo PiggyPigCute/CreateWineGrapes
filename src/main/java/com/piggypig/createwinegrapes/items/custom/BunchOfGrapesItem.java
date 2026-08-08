@@ -1,6 +1,8 @@
 package com.piggypig.createwinegrapes.items.custom;
 
-import com.piggypig.createwinegrapes.items.ModDataComponents;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
@@ -30,6 +32,22 @@ public class BunchOfGrapesItem extends Item {
         stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(count));
     }
 
+    public static GrapeVariety getGrapeVariety(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
+    }
+
+    public static void setGrapeVariety(ItemStack stack, GrapeVariety variety) {
+        stack.set(ModDataComponents.GRAPE_VARIETY.get(), variety);
+    }
+
+    public static Vineyard getVineyard(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT);
+    }
+
+    public static void setVineyard(ItemStack stack, Vineyard vineyard) {
+        stack.set(ModDataComponents.VINEYARD.get(), vineyard);
+    }
+
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack heldStack = player.getItemInHand(hand);
@@ -52,6 +70,8 @@ public class BunchOfGrapesItem extends Item {
         }
 
         ItemStack grape = new ItemStack(ModItems.GRAPE.get());
+        setGrapeVariety(grape, getGrapeVariety(heldStack));
+        setVineyard(grape, getVineyard(heldStack));
         if (!player.getInventory().add(grape)) {
             player.drop(grape, false);
         }

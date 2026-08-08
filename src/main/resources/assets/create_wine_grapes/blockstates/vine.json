@@ -1,10 +1,58 @@
 {
-  "variants": {
-    "": [
-      { "model": "create_wine_grapes:block/vine/vine" },
-      { "model": "create_wine_grapes:block/vine/vine", "y": 90 },
-      { "model": "create_wine_grapes:block/vine/vine", "y": 180 },
-      { "model": "create_wine_grapes:block/vine/vine", "y": 270 }
-    ]
-  }
+  "multipart": [
+    {
+      "when": { "stage": "0" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_0" },
+        { "model": "create_wine_grapes:block/vine/stage_0", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_0", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_0", "y": 270 }
+      ]
+    },
+    {
+      "when": { "stage": "1" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_1" },
+        { "model": "create_wine_grapes:block/vine/stage_1", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_1", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_1", "y": 270 }
+      ]
+    },
+    {
+      "when": { "stage": "2" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_2" },
+        { "model": "create_wine_grapes:block/vine/stage_2", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_2", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_2", "y": 270 }
+      ]
+    },
+    {
+      "when": { "stage": "3" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_3" },
+        { "model": "create_wine_grapes:block/vine/stage_3", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_3", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_3", "y": 270 }
+      ]
+    },
+    {
+      "when": { "stage": "4" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_4" },
+        { "model": "create_wine_grapes:block/vine/stage_4", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_4", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_4", "y": 270 }
+      ]
+    },
+    {
+      "when": { "stage": "5" },
+      "apply": [
+        { "model": "create_wine_grapes:block/vine/stage_5" },
+        { "model": "create_wine_grapes:block/vine/stage_5", "y": 90 },
+        { "model": "create_wine_grapes:block/vine/stage_5", "y": 180 },
+        { "model": "create_wine_grapes:block/vine/stage_5", "y": 270 }
+      ]
+    }
+  ]
 }

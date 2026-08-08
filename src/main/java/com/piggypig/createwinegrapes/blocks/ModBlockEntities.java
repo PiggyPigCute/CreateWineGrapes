@@ -1,27 +1,23 @@
 package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
-import com.piggypig.createwinegrapes.blocks.custom.MechanicalDestemmerBlockEntity;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerBlockEntity;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerRenderer;
+import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerVisual;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModBlockEntities {
 
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
-            DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, CreateWineGrapes.MOD_ID);
-
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MechanicalDestemmerBlockEntity>> MECHANICAL_DESTEMMER =
-            BLOCK_ENTITY_TYPES.register("mechanical_destemmer",
-                    () -> BlockEntityType.Builder.of(
-                            MechanicalDestemmerBlockEntity::new,
-                            ModBlocks.MECHANICAL_DESTEMMER.get()
-                    ).build(null));
+    public static final BlockEntityEntry<MechanicalDestemmerBlockEntity> MECHANICAL_DESTEMMER =
+            CreateWineGrapes.REGISTRATE
+                    .blockEntity("mechanical_destemmer", MechanicalDestemmerBlockEntity::new)
+                    .visual(() -> MechanicalDestemmerVisual::new)
+                    .validBlocks(ModBlocks.MECHANICAL_DESTEMMER)
+                    .renderer(() -> MechanicalDestemmerRenderer::new)
+                    .register();
 
     public static void register(IEventBus eventBus) {
-        BLOCK_ENTITY_TYPES.register(eventBus);
         eventBus.addListener(MechanicalDestemmerBlockEntity::registerCapabilities);
     }
 }

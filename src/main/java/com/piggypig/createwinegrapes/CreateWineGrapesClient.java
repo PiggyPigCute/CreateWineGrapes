@@ -1,6 +1,8 @@
 package com.piggypig.createwinegrapes;
 
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.items.ModItems;
+import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
@@ -9,6 +11,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -35,5 +38,13 @@ public class CreateWineGrapesClient {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.VINE.get(), RenderType.cutout());
         });
+    }
+
+    @SubscribeEvent
+    static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
+        event.register(
+                (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeVariety(stack).getColor() : -1,
+                ModItems.GRAPE.get(), ModItems.BUNCH_OF_GRAPES.get()
+        );
     }
 }
