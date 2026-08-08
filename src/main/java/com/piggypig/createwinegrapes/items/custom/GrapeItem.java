@@ -1,0 +1,64 @@
+package com.piggypig.createwinegrapes.items.custom;
+
+import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
+
+public class GrapeItem extends Item {
+    public GrapeItem(Properties properties) {
+        super(properties);
+    }
+
+    public static GrapeVariety getGrapeVariety(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
+    }
+
+    @Override
+    public @NotNull InteractionResult useOn(UseOnContext context) {
+        if (context.getClickedFace() != Direction.UP) {
+            return InteractionResult.PASS;
+        }
+
+        Level level = context.getLevel();
+        BlockPos clickedPos = context.getClickedPos();
+        BlockState clickedState = level.getBlockState(clickedPos);
+        if (!clickedState.is(Blocks.GRASS_BLOCK) && !clickedState.is(Blocks.DIRT) && !clickedState.is(Blocks.COARSE_DIRT)) {
+            return InteractionResult.PASS;
+        }
+
+        BlockPos plantPos = clickedPos.above();
+        if (!level.getBlockState(plantPos).isAir()) {
+            return InteractionResult.PASS;
+        }
+
+        if (!level.isClientSide) {
+            GrapeVariety variety = getGrapeVariety(context.getItemInHand());
+            BlockState vineState = ModBlocks.VINE.get().defaultBlockState()
+                    .setValue(VineBlock.STAGE, 0)
+                    .setValue(VineBlock.GRAPE_VARIETY, variety);
+            level.setBlock(plantPos, vineState, 3);
+            level.playSound(null, plantPos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            Player player = context.getPlayer();
+            if (player != null && !player.getAbilities().instabuild) {
+                context.getItemInHand().shrink(1);
+            }
+        }
+
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+}

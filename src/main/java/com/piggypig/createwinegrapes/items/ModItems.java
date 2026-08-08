@@ -5,6 +5,7 @@ import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
+import com.piggypig.createwinegrapes.items.custom.GrapeItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -27,9 +28,9 @@ public class ModItems {
             )
     );
 
-    public static final DeferredItem<Item> GRAPE = ITEMS.register(
+    public static final DeferredItem<GrapeItem> GRAPE = ITEMS.register(
             "grape",
-            () -> new Item(new Item.Properties()
+            () -> new GrapeItem(new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(1)
                             .saturationModifier(0.1f)
