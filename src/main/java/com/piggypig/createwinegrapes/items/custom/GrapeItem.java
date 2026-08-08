@@ -4,6 +4,7 @@ import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
 import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -27,6 +28,18 @@ public class GrapeItem extends Item {
         return stack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
     }
 
+    public static void setGrapeVariety(ItemStack stack, GrapeVariety variety) {
+        stack.set(ModDataComponents.GRAPE_VARIETY.get(), variety);
+    }
+
+    public static Vineyard getVineyard(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT);
+    }
+
+    public static void setVineyard(ItemStack stack, Vineyard vineyard) {
+        stack.set(ModDataComponents.VINEYARD.get(), vineyard);
+    }
+
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context) {
         if (context.getClickedFace() != Direction.UP) {
@@ -36,7 +49,7 @@ public class GrapeItem extends Item {
         Level level = context.getLevel();
         BlockPos clickedPos = context.getClickedPos();
         BlockState clickedState = level.getBlockState(clickedPos);
-        if (!clickedState.is(Blocks.GRASS_BLOCK) && !clickedState.is(Blocks.DIRT) && !clickedState.is(Blocks.COARSE_DIRT)) {
+        if (!clickedState.is(Blocks.COARSE_DIRT)) {
             return InteractionResult.PASS;
         }
 
