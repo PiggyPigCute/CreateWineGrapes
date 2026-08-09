@@ -55,6 +55,7 @@ public class ModCreativeTabs {
                         }
                         output.accept(ModBlocks.MECHANICAL_DESTEMMER);
                         output.accept(ModBlocks.PRESS_BASSIN);
+                        output.accept(ModBlocks.VAT);
                     })
                     .build());
 

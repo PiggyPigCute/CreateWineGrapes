@@ -4,9 +4,12 @@ import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.custom.PressBassinBlock;
 import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmer;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
+import com.piggypig.createwinegrapes.blocks.custom.vat.VatBlock;
+import com.piggypig.createwinegrapes.blocks.custom.vat.VatBlockItem;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 
 public class ModBlocks {
 
@@ -48,6 +51,20 @@ public class ModBlocks {
                                     .noOcclusion()
                     )
                     .simpleItem()
+                    .register();
+
+    public static final BlockEntry<VatBlock> VAT =
+            CreateWineGrapes.REGISTRATE
+                    .block("vat", VatBlock::new)
+                    .properties(
+                            p -> p
+                                    .strength(3f, 6f)
+                                    .requiresCorrectToolForDrops()
+                                    .sound(SoundType.METAL)
+                                    .pushReaction(PushReaction.BLOCK)
+                    )
+                    .item(VatBlockItem::new)
+                    .build()
                     .register();
 
     public static void register() {}

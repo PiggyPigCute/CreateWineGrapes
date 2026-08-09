@@ -1,6 +1,8 @@
 {
   "block.create_wine_grapes.mechanical_destemmer": "Mechanical Destemmer",
   "block.create_wine_grapes.press_bassin": "Grape Press Machine",
+  "block.create_wine_grapes.vat": "Vat",
+  "block.create_wine_grapes.vat.not_enough_space": "Not enough space for the Vat (2x3x2)",
   "block.create_wine_grapes.vine": "Vine",
   "create_wine_grapes.ponder.tag.viniculture": "Viniculture",
   "create_wine_grapes.ponder.tag.viniculture.description": "Growing grapes on the Vine and processing them into famous Wines",

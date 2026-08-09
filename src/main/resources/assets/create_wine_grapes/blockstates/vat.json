@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_wine_grapes:block/vat"
+    }
+  }
+}

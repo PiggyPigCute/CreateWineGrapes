@@ -4,6 +4,7 @@ import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerBlockEntity;
 import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerRenderer;
 import com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer.MechanicalDestemmerVisual;
+import com.piggypig.createwinegrapes.blocks.custom.vat.VatBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.IEventBus;
 
@@ -17,7 +18,14 @@ public class ModBlockEntities {
                     .renderer(() -> MechanicalDestemmerRenderer::new)
                     .register();
 
+    public static final BlockEntityEntry<VatBlockEntity> VAT =
+            CreateWineGrapes.REGISTRATE
+                    .blockEntity("vat", VatBlockEntity::new)
+                    .validBlocks(ModBlocks.VAT)
+                    .register();
+
     public static void register(IEventBus eventBus) {
         eventBus.addListener(MechanicalDestemmerBlockEntity::registerCapabilities);
+        eventBus.addListener(VatBlockEntity::registerCapabilities);
     }
 }
