@@ -51,7 +51,9 @@ public class VineBlock extends Block {
     public static final BooleanProperty SOUTH = PipeBlock.SOUTH;
     public static final BooleanProperty WEST = PipeBlock.WEST;
     protected static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION =
-            PipeBlock.PROPERTY_BY_DIRECTION.entrySet().stream().filter((p_52346_) -> (p_52346_.getKey()).getAxis().isHorizontal()).collect(Util.toMap());
+            PipeBlock.PROPERTY_BY_DIRECTION.entrySet().stream().filter(
+                    (p_52346_) -> (p_52346_.getKey()).getAxis().isHorizontal()).collect(Util.toMap()
+            );
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, MAX_STAGE);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_STAGE);
     public static final EnumProperty<GrapeVariety> GRAPE_VARIETY = EnumProperty.create("grape_variety", GrapeVariety.class);
