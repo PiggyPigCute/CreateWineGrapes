@@ -11,6 +11,7 @@
   "create_wine_grapes.ponder.vine_3.header": "Vine growing",
   "create_wine_grapes.ponder.vine_3.text_1": "Vines must be placed on spaced lines to grow",
   "creativetab.create_wine_grapes.create_wine_grapes_tab": "Create: Wine & Grapes",
+  "entity.minecraft.villager.create_wine_grapes.winemaker": "Winemaker",
   "item.create_wine_grapes.bunch_of_grapes": "Bunch of Grapes",
   "item.create_wine_grapes.grape": "Grape",
   "item.create_wine_grapes.stem": "Grapes stem",

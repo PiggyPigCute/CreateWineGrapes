@@ -9,6 +9,8 @@ import com.piggypig.createwinegrapes.items.ModCreativeTabs;
 import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
+import com.piggypig.createwinegrapes.villagers.ModPoiTypes;
+import com.piggypig.createwinegrapes.villagers.ModVillagerProfessions;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
@@ -55,6 +57,8 @@ public class CreateWineGrapes {
         ModBlockEntities.register(modEventBus);
         ModRenderers.register(modEventBus);
         ModFluids.register();
+        ModPoiTypes.register(modEventBus);
+        ModVillagerProfessions.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
