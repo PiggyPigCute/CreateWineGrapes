@@ -225,20 +225,14 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         FluidStack output = new FluidStack(ModFluids.MUST.get(), 0);
 
         int volume;
-        GrapeVariety variety;
-        Vineyard vineyard;
-        boolean frozen;
-        int passerillage;
+        GrapeData grapeData;
         int herbaceousness = 0;
         FermentationData fermentationData;
 
         if (!inputInventory.isEmpty()) {
             volume = countInputGrapes() * 10;
             ItemStack grapeStack = inputInventory.getStackInSlot(0);
-            variety = GrapeLikeItem.getGrapeData(grapeStack).grapeVariety();
-            vineyard = GrapeLikeItem.getGrapeData(grapeStack).vineyard();
-            frozen = GrapeLikeItem.getGrapeData(grapeStack).frozen();
-            passerillage = GrapeLikeItem.getGrapeData(grapeStack).passerillage();
+            grapeData = GrapeLikeItem.getGrapeData(grapeStack);
             for (int i = 0; i < inputInventory.getSlots(); i++) {
                 ItemStack stack = inputInventory.getStackInSlot(i);
                 if (stack.is(ModItems.BUNCH_OF_GRAPES.get())) {
@@ -251,15 +245,12 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         else if (!inputTank.isEmpty()) {
             volume = inputTank.getPrimaryHandler().getFluidAmount();
             MustData inputMustData = MustFluid.getMustData(inputTank.getPrimaryHandler().getFluid());
-            variety = inputMustData.getGrapeVariety();
-            vineyard = inputMustData.getVineyard();
-            frozen = inputMustData.isFrozen();
-            passerillage = inputMustData.getPasserillage();
-            herbaceousness = inputMustData.getHerbaceousness();
-            if (inputMustData.getResidue() == Residue.STEMS) {
+            grapeData = inputMustData.grapeData();
+            herbaceousness = inputMustData.herbaceousness();
+            if (inputMustData.residue() == Residue.STEMS) {
                 herbaceousness += 5;
             }
-            fermentationData = inputMustData.getFermentationData();
+            fermentationData = inputMustData.fermentationData();
         }
         else {
             return;
@@ -277,11 +268,8 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         MustFluid.setMustData(
                 output,
                 new MustData(
-                        variety,
-                        vineyard,
+                        grapeData,
                         Residue.LOW,
-                        frozen,
-                        passerillage,
                         herbaceousness,
                         fermentationData,
                         false
