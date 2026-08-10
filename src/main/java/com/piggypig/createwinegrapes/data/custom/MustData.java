@@ -10,28 +10,22 @@ public record MustData(
         GrapeVariety grapeVariety,
         Vineyard vineyard,
         int residueLevel, // 0 -> 100
+        int fermentation,
         boolean badWine
 ) {
     public static final MustData DEFAULT = new MustData(
             GrapeVariety.NONE,
             Vineyard.DEFAULT,
             0,
+            0,
             true
     );
-
-    public static MustData fromGrapeData(GrapeVariety variety, Vineyard vineyard, int residueLevel) {
-        return new MustData(
-                variety,
-                vineyard,
-                residueLevel,
-                false
-        );
-    }
 
     public static final Codec<MustData> CODEC = RecordCodecBuilder.create(i -> i.group(
             GrapeVariety.CODEC.fieldOf("grape_variety").forGetter(MustData::grapeVariety),
             Vineyard.CODEC.fieldOf("vineyard").forGetter(MustData::vineyard),
             Codec.INT.fieldOf("residue_level").forGetter(MustData::residueLevel),
+            Codec.INT.fieldOf("fermentation").forGetter(MustData::fermentation),
             Codec.BOOL.fieldOf("bad_wine").forGetter(MustData::badWine)
     ).apply(i, MustData::new));
 
@@ -40,6 +34,7 @@ public record MustData(
                     GrapeVariety.STREAM_CODEC, MustData::grapeVariety,
                     Vineyard.STREAM_CODEC, MustData::vineyard,
                     ByteBufCodecs.VAR_INT, MustData::residueLevel,
+                    ByteBufCodecs.VAR_INT, MustData::fermentation,
                     ByteBufCodecs.BOOL, MustData::badWine,
                     MustData::new
             );

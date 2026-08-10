@@ -236,18 +236,21 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         int volume;
         GrapeVariety variety;
         Vineyard vineyard;
+        int fermentation;
 
         if (!inputInventory.isEmpty()) {
             volume = countInputGrapes() * 10;
             ItemStack grapeStack = inputInventory.getStackInSlot(0);
             variety = grapeStack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
             vineyard = grapeStack.getOrDefault(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT);
+            fermentation = 0;
         }
         else if (!inputTank.isEmpty()) {
             volume = inputTank.getPrimaryHandler().getFluidAmount();
             MustData inputMustData = MustFluid.getMustData(inputTank.getPrimaryHandler().getFluid());
             variety = inputMustData.grapeVariety();
             vineyard = inputMustData.vineyard();
+            fermentation = inputMustData.fermentation();
         }
         else {
             return;
@@ -262,7 +265,10 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         }
 
         output.setAmount(volume);
-        MustFluid.setMustData(output, MustData.fromGrapeData(variety, vineyard, 5));
+        MustFluid.setMustData(
+                output,
+                new MustData(variety, vineyard, 5, fermentation, false)
+        );
 
         outputTank.getCapability().fill(output, IFluidHandler.FluidAction.EXECUTE);
 
