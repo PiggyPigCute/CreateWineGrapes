@@ -1,15 +1,11 @@
 package com.piggypig.createwinegrapes.blocks.custom.press_basin;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
-import com.piggypig.createwinegrapes.data.ModDataComponents;
-import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
-import com.piggypig.createwinegrapes.data.custom.MustData;
-import com.piggypig.createwinegrapes.data.custom.Residue;
-import com.piggypig.createwinegrapes.data.custom.Vineyard;
+import com.piggypig.createwinegrapes.data.custom.*;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
 import com.piggypig.createwinegrapes.items.ModItems;
-import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
+import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -168,12 +164,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
 
         for (int i = 0; i < inputInventory.getSlots(); i++) {
             ItemStack stack = inputInventory.getStackInSlot(i);
-            if (stack.is(ModItems.BUNCH_OF_GRAPES.get())) {
-                sum += BunchOfGrapesItem.getGrapeCount(stack);
-            }
-            else {
-                sum += stack.getCount();
-            }
+            sum += GrapeLikeItem.getGrapeData(stack).getGrapeCount();
         }
 
         return sum;
@@ -236,14 +227,18 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         int volume;
         GrapeVariety variety;
         Vineyard vineyard;
+        boolean frozen;
+        int passerillage;
         int herbaceousness = 0;
-        int fermentation;
+        FermentationData fermentationData;
 
         if (!inputInventory.isEmpty()) {
             volume = countInputGrapes() * 10;
             ItemStack grapeStack = inputInventory.getStackInSlot(0);
-            variety = grapeStack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
-            vineyard = grapeStack.getOrDefault(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT);
+            variety = GrapeLikeItem.getGrapeData(grapeStack).getGrapeVariety();
+            vineyard = GrapeLikeItem.getGrapeData(grapeStack).getVineyard();
+            frozen = GrapeLikeItem.getGrapeData(grapeStack).isFrozen();
+            passerillage = GrapeLikeItem.getGrapeData(grapeStack).getPasserillage();
             for (int i = 0; i < inputInventory.getSlots(); i++) {
                 ItemStack stack = inputInventory.getStackInSlot(i);
                 if (stack.is(ModItems.BUNCH_OF_GRAPES.get())) {
@@ -251,18 +246,20 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                     break;
                 }
             }
-            fermentation = 0;
+            fermentationData = FermentationData.DEFAULT;
         }
         else if (!inputTank.isEmpty()) {
             volume = inputTank.getPrimaryHandler().getFluidAmount();
             MustData inputMustData = MustFluid.getMustData(inputTank.getPrimaryHandler().getFluid());
-            variety = inputMustData.grapeVariety();
-            vineyard = inputMustData.vineyard();
-            herbaceousness = inputMustData.herbaceousness();
-            if (inputMustData.residue() == Residue.STEMS) {
+            variety = inputMustData.getGrapeVariety();
+            vineyard = inputMustData.getVineyard();
+            frozen = inputMustData.isFrozen();
+            passerillage = inputMustData.getPasserillage();
+            herbaceousness = inputMustData.getHerbaceousness();
+            if (inputMustData.getResidue() == Residue.STEMS) {
                 herbaceousness += 5;
             }
-            fermentation = inputMustData.fermentation();
+            fermentationData = inputMustData.getFermentationData();
         }
         else {
             return;
@@ -282,9 +279,11 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                 new MustData(
                         variety,
                         vineyard,
-                        Residue.NONE,
+                        Residue.LOW,
+                        frozen,
+                        passerillage,
                         herbaceousness,
-                        fermentation,
+                        fermentationData,
                         false
                 )
         );

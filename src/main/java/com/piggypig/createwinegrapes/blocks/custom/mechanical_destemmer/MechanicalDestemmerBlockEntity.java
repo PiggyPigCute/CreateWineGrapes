@@ -121,7 +121,7 @@ public class MechanicalDestemmerBlockEntity extends KineticBlockEntity {
     }
 
     private void finishProcessing(ItemStack bunch) {
-        int grapeCount = BunchOfGrapesItem.getGrapeCount(bunch);
+        int grapeCount = BunchOfGrapesItem.getGrapeData(bunch).getGrapeCount();
         dropGrapeBelow(grapeCount);
         dropStem();
 

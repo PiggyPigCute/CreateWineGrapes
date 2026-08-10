@@ -2,7 +2,10 @@ package com.piggypig.createwinegrapes.items;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
+import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -14,9 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem.setGrapeCount;
-import static com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem.setGrapeVariety;
-
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateWineGrapes.MOD_ID);
@@ -25,8 +25,12 @@ public class ModCreativeTabs {
             () -> CreativeModeTab.builder()
                     .icon(() -> {
                         ItemStack icon = new ItemStack(ModItems.BUNCH_OF_GRAPES.get());
-                        setGrapeCount(icon, 6);
-                        setGrapeVariety(icon, GrapeVariety.TEMPRANILLO);
+                        GrapeLikeItem.setGrapeData(icon, new GrapeData(
+                                GrapeVariety.TEMPRANILLO,
+                                Vineyard.DEFAULT,
+                                6,
+                                false
+                        ));
                         return icon;
                     })
                     .title(Component.translatable("creativetab.create_wine_grapes.create_wine_grapes_tab"))
@@ -43,14 +47,23 @@ public class ModCreativeTabs {
                         ));
                         for (GrapeVariety grapeVariety : GRAPE_VARIETIES) {
                             ItemStack bunchOfGrapes = new ItemStack(ModItems.BUNCH_OF_GRAPES.get());
-                            setGrapeCount(bunchOfGrapes, 6);
-                            setGrapeVariety(bunchOfGrapes, grapeVariety);
+                            GrapeLikeItem.setGrapeData(bunchOfGrapes, new GrapeData(
+                                    grapeVariety,
+                                    Vineyard.DEFAULT,
+                                    6,
+                                    false
+                            ));
                             output.accept(bunchOfGrapes);
                         }
                         output.accept(ModItems.STEM);
                         for (GrapeVariety grapeVariety : GRAPE_VARIETIES) {
                             ItemStack grape = new ItemStack(ModItems.GRAPE.get());
-                            setGrapeVariety(grape, grapeVariety);
+                            GrapeLikeItem.setGrapeData(grape, new GrapeData(
+                                    grapeVariety,
+                                    Vineyard.DEFAULT,
+                                    1,
+                                    false
+                            ));
                             output.accept(grape);
                         }
                         output.accept(ModItems.GRAPE);

@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public enum Residue implements StringRepresentable {
     STEMS("stems"),
     SKINS("skins"),
+    LOW("low"),
     NONE("none");
 
     public static final Codec<Residue> CODEC = StringRepresentable.fromEnum(Residue::values);

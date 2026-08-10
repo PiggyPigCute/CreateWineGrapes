@@ -2,42 +2,22 @@ package com.piggypig.createwinegrapes.items.custom;
 
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.blocks.custom.VineBlock;
-import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
-import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class GrapeItem extends Item {
+public class GrapeItem extends GrapeLikeItem {
     public GrapeItem(Properties properties) {
         super(properties);
-    }
-
-    public static GrapeVariety getGrapeVariety(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.GRAPE_VARIETY.get(), GrapeVariety.NONE);
-    }
-
-    public static void setGrapeVariety(ItemStack stack, GrapeVariety variety) {
-        stack.set(ModDataComponents.GRAPE_VARIETY.get(), variety);
-    }
-
-    public static Vineyard getVineyard(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.VINEYARD.get(), Vineyard.DEFAULT);
-    }
-
-    public static void setVineyard(ItemStack stack, Vineyard vineyard) {
-        stack.set(ModDataComponents.VINEYARD.get(), vineyard);
     }
 
     @Override
@@ -59,7 +39,7 @@ public class GrapeItem extends Item {
         }
 
         if (!level.isClientSide) {
-            GrapeVariety variety = getGrapeVariety(context.getItemInHand());
+            GrapeVariety variety = getGrapeData(context.getItemInHand()).getGrapeVariety();
             BlockState vineState = ModBlocks.VINE.get().defaultBlockState()
                     .setValue(VineBlock.STAGE, 0)
                     .setValue(VineBlock.GRAPE_VARIETY, variety);
