@@ -128,6 +128,7 @@ public class VineBlock extends Block {
             for (int i = 0; i < grapeCount; i++) {
                 ItemStack grape = new ItemStack(ModItems.GRAPE.get());
                 GrapeItem.setGrapeData(grape, grapeData);
+                GrapeItem.setGrapeCount(grape, 1);
                 drops.add(grape);
             }
             return drops;

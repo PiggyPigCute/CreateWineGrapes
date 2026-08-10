@@ -67,6 +67,7 @@ public class ModCreativeTabs {
                                     false,
                                     0
                             ));
+                            GrapeLikeItem.setGrapeCount(grape, 1);
                             output.accept(grape);
                         }
                         output.accept(ModItems.GRAPE);

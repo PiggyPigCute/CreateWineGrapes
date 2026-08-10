@@ -164,7 +164,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
 
         for (int i = 0; i < inputInventory.getSlots(); i++) {
             ItemStack stack = inputInventory.getStackInSlot(i);
-            sum += GrapeLikeItem.getGrapeCount(stack);
+            sum += GrapeLikeItem.getGrapeCount(stack) * stack.getCount();
         }
 
         return sum;

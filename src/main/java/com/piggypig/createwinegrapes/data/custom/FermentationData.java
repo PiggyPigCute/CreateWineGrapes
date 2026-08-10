@@ -17,6 +17,8 @@ public record FermentationData(
         boolean sugarAdded, // TODO à voir (champagne)
         int bottleAging
 ) {
+    public static final int MAX_FERMENTATION = 64;
+
     public static final FermentationData DEFAULT = new FermentationData(
             0,
             false,

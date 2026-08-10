@@ -2,7 +2,10 @@ package com.piggypig.createwinegrapes.blocks.custom.vat;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
+import com.piggypig.createwinegrapes.data.custom.FermentationData;
+import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
+import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +40,7 @@ public class VatBlockEntity extends SmartBlockEntity {
     private BlockPos controllerPos;
     @Nullable
     private Direction forward;
+    @Nullable
     private FluidTank tank;
 
     private static final int PROCESS_DURATION = 20;
@@ -74,6 +79,12 @@ public class VatBlockEntity extends SmartBlockEntity {
                 notifyUpdate();
             }
         };
+    }
+
+    @Override
+    public void notifyUpdate() {
+        super.notifyUpdate();
+        processingTicks = PROCESS_DURATION;
     }
 
     public boolean isController() {
@@ -154,7 +165,11 @@ public class VatBlockEntity extends SmartBlockEntity {
             return;
         }
 
-        if (tank.isEmpty() || !tank.getFluid().is(ModFluids.MUST.get())) {
+        if (!isController() || tank == null || tank.isEmpty() || !tank.getFluid().is(ModFluids.MUST.get())) {
+            return;
+        }
+
+        if (MustFluid.getMustData(tank.getFluid()).fermentationData().fermentation() >= FermentationData.MAX_FERMENTATION) {
             return;
         }
 
@@ -166,6 +181,15 @@ public class VatBlockEntity extends SmartBlockEntity {
     }
 
     private void process() {
-        CreateWineGrapes.LOGGER.debug("process !");
+        assert tank != null;
+        FluidStack fluidStack = tank.getFluid();
+
+        MustData currentMustData = MustFluid.getMustData(fluidStack);
+        FermentationData currentFermentationData = currentMustData.fermentationData();
+        int currentFermentation = currentFermentationData.fermentation();
+
+        MustFluid.setMustData(fluidStack, currentMustData.withFermentationData(
+                currentFermentationData.withFermentation(currentFermentation + 1)
+        ));
     }
 }
