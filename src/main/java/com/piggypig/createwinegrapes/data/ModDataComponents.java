@@ -2,6 +2,7 @@ package com.piggypig.createwinegrapes.data;
 
 import com.mojang.serialization.Codec;
 import com.piggypig.createwinegrapes.CreateWineGrapes;
+import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
 import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
@@ -24,6 +25,14 @@ public class ModDataComponents {
                     builder -> builder
                             .persistent(Codec.intRange(0, 6))
                             .networkSynchronized(ByteBufCodecs.VAR_INT)
+            );
+
+    public static final Supplier<DataComponentType<GrapeData>> GRAPE_DATA =
+            DATA_COMPONENTS.registerComponentType(
+                    "grape_data",
+                    builder -> builder
+                            .persistent(GrapeData.CODEC)
+                            .networkSynchronized(GrapeData.STREAM_CODEC)
             );
 
     public static final Supplier<DataComponentType<MustData>> MUST_DATA =

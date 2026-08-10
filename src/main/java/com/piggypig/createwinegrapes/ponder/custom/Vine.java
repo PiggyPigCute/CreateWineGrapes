@@ -1,7 +1,10 @@
 package com.piggypig.createwinegrapes.ponder.custom;
 
+import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.ModItems;
+import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
@@ -10,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
-
-import static com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem.setGrapeVariety;
 
 public class Vine {
     public static void vine1(SceneBuilder scene, SceneBuildingUtil util) {
@@ -22,7 +23,12 @@ public class Vine {
 
         Vec3 plantingSpot = new Vec3(1.5, 1.5, 2.5);
         ItemStack grape = new ItemStack(ModItems.GRAPE.get());
-        setGrapeVariety(grape, GrapeVariety.CABERNET_SAUVIGNON);
+        GrapeLikeItem.setGrapeData(grape, new GrapeData(
+                GrapeVariety.CABERNET_SAUVIGNON,
+                Vineyard.DEFAULT,
+                1,
+                false
+        ));
         scene.overlay().showControls(plantingSpot, Pointing.DOWN, 60)
                 .rightClick()
                 .withItem(grape);
@@ -60,7 +66,12 @@ public class Vine {
         );
         for (int i=0; i<6; i++) {
             ItemStack grape = new ItemStack(ModItems.GRAPE.get());
-            setGrapeVariety(grape, varieties.get(i));
+            GrapeLikeItem.setGrapeData(grape, new GrapeData(
+                    varieties.get(i),
+                    Vineyard.DEFAULT,
+                    1,
+                    false
+            ));
             scene.overlay().showControls(plantingSpots.get(i), Pointing.DOWN, 60)
                     .rightClick()
                     .withItem(grape);

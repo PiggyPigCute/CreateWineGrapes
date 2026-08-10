@@ -1,4 +1,4 @@
-package com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer;
+package com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.items.ModItems;
@@ -121,7 +121,7 @@ public class MechanicalDestemmerBlockEntity extends KineticBlockEntity {
     }
 
     private void finishProcessing(ItemStack bunch) {
-        int grapeCount = BunchOfGrapesItem.getGrapeCount(bunch);
+        int grapeCount = BunchOfGrapesItem.getGrapeData(bunch).getGrapeCount();
         dropGrapeBelow(grapeCount);
         dropStem();
 

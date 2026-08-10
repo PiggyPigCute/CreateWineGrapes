@@ -44,6 +44,14 @@ public class ModItems {
     public static final DeferredItem<Item> STEM = ITEMS.register("stem",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> GRAPE_MARC = ITEMS.register("grape_marc",
+            () -> new Item(new Item.Properties()));
+
+    // Never obtainable in survival: it is only ever exposed by PressBasinBlockEntity's item capability, as a
+    // fixed ingredient that gates the compacting recipes to that basin and excludes a vanilla Create basin.
+    public static final DeferredItem<Item> PRESS_MECHANISM = ITEMS.register("press_mechanism",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -39,6 +39,7 @@ public class CreateWineGrapesClient {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.VINE.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PRESS_BASIN.get(), RenderType.cutout());
             PonderIndex.addPlugin(new CreateWineGrapesPonderPlugin());
         });
     }
@@ -46,7 +47,7 @@ public class CreateWineGrapesClient {
     @SubscribeEvent
     static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
         event.register(
-                (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeVariety(stack).getColor() : -1,
+                (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeData(stack).getGrapeVariety().getColor() : -1,
                 ModItems.GRAPE.get(), ModItems.BUNCH_OF_GRAPES.get()
         );
     }

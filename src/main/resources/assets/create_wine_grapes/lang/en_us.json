@@ -1,6 +1,6 @@
 {
   "block.create_wine_grapes.mechanical_destemmer": "Mechanical Destemmer",
-  "block.create_wine_grapes.press_bassin": "Grape Press Machine",
+  "block.create_wine_grapes.press_basin": "Grape Press Machine",
   "block.create_wine_grapes.vat": "Vat",
   "block.create_wine_grapes.vat.not_enough_space": "Not enough space for the Vat (2x3x2)",
   "block.create_wine_grapes.vine": "Vine",
@@ -16,6 +16,8 @@
   "entity.minecraft.villager.create_wine_grapes.winemaker": "Winemaker",
   "item.create_wine_grapes.bunch_of_grapes": "Bunch of Grapes",
   "item.create_wine_grapes.grape": "Grape",
+  "item.create_wine_grapes.grape_marc": "Grape Marc",
+  "item.create_wine_grapes.grape_juice_bucket": "Bucket of Grape Juice",
   "item.create_wine_grapes.stem": "Grapes stem",
   "fluid.create_wine_grapes.brandy": "Brandy",
   "fluid.create_wine_grapes.ethanol": "Ethanol",

@@ -29,6 +29,6 @@ public class ModPonderTags {
         itemHelper.addToTag(VINICULTURE)
                 .add(ModBlocks.VINE.get())
                 .add(ModBlocks.MECHANICAL_DESTEMMER.get())
-                .add(ModBlocks.PRESS_BASSIN.get());
+                .add(ModBlocks.PRESS_BASIN.get());
     }
 }

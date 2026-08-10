@@ -1,4 +1,4 @@
-package com.piggypig.createwinegrapes.blocks.custom.mechanicalDestemmer;
+package com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

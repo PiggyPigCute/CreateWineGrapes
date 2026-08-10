@@ -1,5 +1,6 @@
 package com.piggypig.createwinegrapes.blocks.custom;
 
+import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.ModItems;
@@ -119,13 +120,14 @@ public class VineBlock extends Block {
 
             GrapeVariety variety = state.getValue(GRAPE_VARIETY);
             Vineyard vineyard = Vineyard.sample(level, pos);
+            // TODO set frozen when icy + night
+            GrapeData grapeData = new GrapeData(variety, vineyard, 1, false);
             int grapeCount = 4 + level.random.nextInt(3);
 
             List<ItemStack> drops = new ArrayList<>(grapeCount);
             for (int i = 0; i < grapeCount; i++) {
                 ItemStack grape = new ItemStack(ModItems.GRAPE.get());
-                GrapeItem.setGrapeVariety(grape, variety);
-                GrapeItem.setVineyard(grape, vineyard);
+                GrapeItem.setGrapeData(grape, grapeData);
                 drops.add(grape);
             }
             return drops;
@@ -175,9 +177,13 @@ public class VineBlock extends Block {
         if (!level.isClientSide) {
             ServerLevel serverLevel = (ServerLevel) level;
             ItemStack bunchOfGrapes = new ItemStack(ModItems.BUNCH_OF_GRAPES.get());
-            BunchOfGrapesItem.setGrapeCount(bunchOfGrapes, 4 + level.random.nextInt(3));
-            BunchOfGrapesItem.setGrapeVariety(bunchOfGrapes, state.getValue(GRAPE_VARIETY));
-            BunchOfGrapesItem.setVineyard(bunchOfGrapes, Vineyard.sample(serverLevel, pos));
+            // TODO set frozen when icy + night
+            BunchOfGrapesItem.setGrapeData(bunchOfGrapes, new GrapeData(
+                    state.getValue(GRAPE_VARIETY),
+                    Vineyard.sample(serverLevel, pos),
+                    4 + level.random.nextInt(3),
+                    false
+            ));
             if (!player.getInventory().add(bunchOfGrapes)) {
                 player.drop(bunchOfGrapes, false);
             }
