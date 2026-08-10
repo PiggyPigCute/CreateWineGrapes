@@ -3,6 +3,8 @@ package com.piggypig.createwinegrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
+import com.piggypig.createwinegrapes.ponder.CreateWineGrapesPonderPlugin;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
@@ -37,6 +39,7 @@ public class CreateWineGrapesClient {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.VINE.get(), RenderType.cutout());
+            PonderIndex.addPlugin(new CreateWineGrapesPonderPlugin());
         });
     }
 

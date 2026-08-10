@@ -5,9 +5,12 @@ import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import com.piggypig.createwinegrapes.items.custom.GrapeItem;
+import net.minecraft.Util;
 import net.minecraft.core.Direction;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -24,9 +27,11 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -41,6 +46,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class VineBlock extends Block {
     public static final int MAX_STAGE = 5;
+    public static final BooleanProperty NORTH = PipeBlock.NORTH;
+    public static final BooleanProperty EAST = PipeBlock.EAST;
+    public static final BooleanProperty SOUTH = PipeBlock.SOUTH;
+    public static final BooleanProperty WEST = PipeBlock.WEST;
+    protected static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION =
+            PipeBlock.PROPERTY_BY_DIRECTION.entrySet().stream().filter(
+                    (p_52346_) -> (p_52346_.getKey()).getAxis().isHorizontal()).collect(Util.toMap()
+            );
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, MAX_STAGE);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_STAGE);
     public static final EnumProperty<GrapeVariety> GRAPE_VARIETY = EnumProperty.create("grape_variety", GrapeVariety.class);
@@ -48,12 +61,19 @@ public class VineBlock extends Block {
 
     public VineBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(STAGE, 0).setValue(AGE, 0).setValue(GRAPE_VARIETY, GrapeVariety.NONE));
+        registerDefaultState(stateDefinition.any()
+                .setValue(NORTH, false)
+                .setValue(EAST, false)
+                .setValue(SOUTH, false)
+                .setValue(WEST, false)
+                .setValue(STAGE, 0)
+                .setValue(AGE, 0)
+                .setValue(GRAPE_VARIETY, GrapeVariety.NONE));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STAGE, AGE, GRAPE_VARIETY);
+        builder.add(NORTH, EAST, SOUTH, WEST, STAGE, AGE, GRAPE_VARIETY);
     }
 
     @Override
@@ -116,14 +136,24 @@ public class VineBlock extends Block {
 
     @Override
     protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
-        return direction == Direction.DOWN && !state.canSurvive(level, pos)
-                ? Blocks.AIR.defaultBlockState()
-                : super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+        if (direction == Direction.DOWN) {
+            return Blocks.AIR.defaultBlockState();
+        } else if (direction.getAxis().getPlane() == Direction.Plane.HORIZONTAL) {
+            state = state.setValue(
+                    PROPERTY_BY_DIRECTION.get(direction),
+                    neighborState.getBlock() instanceof VineBlock
+            );
+        }
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+    }
+
+    private static boolean isInLine(BlockState state) {
+        return (!state.getValue(NORTH) && !state.getValue(SOUTH)) || (!state.getValue(WEST) && !state.getValue(EAST));
     }
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(STAGE) < MAX_STAGE;
+        return state.getValue(STAGE) < MAX_STAGE && isInLine(state);
     }
 
     @Override
@@ -165,4 +195,6 @@ public class VineBlock extends Block {
     protected float getMaxHorizontalOffset() {
         return 0.1F;
     }
+
+
 }
