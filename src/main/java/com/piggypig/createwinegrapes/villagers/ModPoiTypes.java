@@ -17,7 +17,7 @@ public class ModPoiTypes {
     public static final DeferredHolder<PoiType, PoiType> WINEMAKER = POI_TYPES.register(
             "winemaker",
             () -> new PoiType(
-                    Set.copyOf(ModBlocks.PRESS_BASSIN.get().getStateDefinition().getPossibleStates()),
+                    Set.copyOf(ModBlocks.PRESS_BASIN.get().getStateDefinition().getPossibleStates()),
                     1,
                     1
             )
