@@ -39,6 +39,7 @@ public class CreateWineGrapesClient {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.MECHANICAL_DESTEMMER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.VINE.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PRESS_BASIN.get(), RenderType.cutout());
             PonderIndex.addPlugin(new CreateWineGrapesPonderPlugin());
         });
     }

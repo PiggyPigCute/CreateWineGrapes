@@ -5,6 +5,7 @@ import com.piggypig.createwinegrapes.blocks.custom.press_basin.PressBasinBlockEn
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerBlockEntity;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerRenderer;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerVisual;
+import com.piggypig.createwinegrapes.blocks.custom.press_basin.PressBasinBlockVisual;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +23,7 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<PressBasinBlockEntity> PRESS_BASIN =
             CreateWineGrapes.REGISTRATE
                     .blockEntity("press_basin", PressBasinBlockEntity::new)
+                    .visual(() -> PressBasinBlockVisual::new)
                     .validBlocks(ModBlocks.PRESS_BASIN)
                     .register();
 

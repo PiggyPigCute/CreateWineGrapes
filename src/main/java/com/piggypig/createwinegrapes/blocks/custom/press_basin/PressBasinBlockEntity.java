@@ -77,6 +77,10 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         return inputSideFluidCapability;
     }
 
+    public float getPressHeight() {
+        return pressHeight;
+    }
+
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
@@ -212,6 +216,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         }
 
         pressHeight += speed / 1000;
+        sendData();
         if (pressHeight <= 0f) {
             pressHeight = 0f;
             locked = true;
@@ -243,6 +248,9 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
             MustData inputMustData = MustFluid.getMustData(inputTank.getPrimaryHandler().getFluid());
             variety = inputMustData.grapeVariety();
             vineyard = inputMustData.vineyard();
+        }
+        else {
+            return;
         }
 
         // S'il n'y a pas assez de place dans le outputTank ou le outputInventory
