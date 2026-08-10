@@ -233,9 +233,9 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
     private void process() {
         FluidStack output = new FluidStack(ModFluids.MUST.get(), 0);
 
-        int volume = 0;
-        GrapeVariety variety = GrapeVariety.NONE;
-        Vineyard vineyard = Vineyard.DEFAULT;
+        int volume;
+        GrapeVariety variety;
+        Vineyard vineyard;
 
         if (!inputInventory.isEmpty()) {
             volume = countInputGrapes() * 10;

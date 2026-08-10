@@ -23,15 +23,15 @@ public class PressBasinBlockVisual extends SingleAxisRotatingVisual<PressBasinBl
         press = instancerProvider().instancer(InstanceTypes.ORIENTED, Models.partial(ModPartialModels.PRESS_BASIN_PRESS))
                 .createInstance();
 
-        animate(partialTick);
+        animate();
     }
 
     @Override
     public void beginFrame(DynamicVisual.Context ctx) {
-        animate(ctx.partialTick());
+        animate();
     }
 
-    private void animate(float pt) {
+    private void animate() {
         float height = pressBasin.getPressHeight() * 0.75f;
 
         press.position(getVisualPosition())

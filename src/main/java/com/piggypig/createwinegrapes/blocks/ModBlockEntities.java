@@ -6,7 +6,6 @@ import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.Mechanic
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerRenderer;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerVisual;
 import com.piggypig.createwinegrapes.blocks.custom.press_basin.PressBasinBlockVisual;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.IEventBus;
 
