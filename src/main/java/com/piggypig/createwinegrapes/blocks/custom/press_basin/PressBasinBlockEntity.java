@@ -164,7 +164,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
 
         for (int i = 0; i < inputInventory.getSlots(); i++) {
             ItemStack stack = inputInventory.getStackInSlot(i);
-            sum += GrapeLikeItem.getGrapeData(stack).getGrapeCount();
+            sum += GrapeLikeItem.getGrapeCount(stack);
         }
 
         return sum;
@@ -235,10 +235,10 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         if (!inputInventory.isEmpty()) {
             volume = countInputGrapes() * 10;
             ItemStack grapeStack = inputInventory.getStackInSlot(0);
-            variety = GrapeLikeItem.getGrapeData(grapeStack).getGrapeVariety();
-            vineyard = GrapeLikeItem.getGrapeData(grapeStack).getVineyard();
-            frozen = GrapeLikeItem.getGrapeData(grapeStack).isFrozen();
-            passerillage = GrapeLikeItem.getGrapeData(grapeStack).getPasserillage();
+            variety = GrapeLikeItem.getGrapeData(grapeStack).grapeVariety();
+            vineyard = GrapeLikeItem.getGrapeData(grapeStack).vineyard();
+            frozen = GrapeLikeItem.getGrapeData(grapeStack).frozen();
+            passerillage = GrapeLikeItem.getGrapeData(grapeStack).passerillage();
             for (int i = 0; i < inputInventory.getSlots(); i++) {
                 ItemStack stack = inputInventory.getStackInSlot(i);
                 if (stack.is(ModItems.BUNCH_OF_GRAPES.get())) {

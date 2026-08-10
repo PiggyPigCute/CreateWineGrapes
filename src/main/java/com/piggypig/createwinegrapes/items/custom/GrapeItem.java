@@ -39,7 +39,7 @@ public class GrapeItem extends GrapeLikeItem {
         }
 
         if (!level.isClientSide) {
-            GrapeVariety variety = getGrapeData(context.getItemInHand()).getGrapeVariety();
+            GrapeVariety variety = getGrapeData(context.getItemInHand()).grapeVariety();
             BlockState vineState = ModBlocks.VINE.get().defaultBlockState()
                     .setValue(VineBlock.STAGE, 0)
                     .setValue(VineBlock.GRAPE_VARIETY, variety);

@@ -1,6 +1,5 @@
 package com.piggypig.createwinegrapes.items.custom;
 
-import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.items.ModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,11 +25,11 @@ public class BunchOfGrapesItem extends GrapeLikeItem {
             return InteractionResultHolder.success(heldStack);
         }
 
-        int remainingGrapes = getGrapeData(heldStack).getGrapeCount() - 1;
+        int remainingGrapes = getGrapeCount(heldStack) - 1;
         ItemStack resultHandStack;
 
         if (remainingGrapes > 0) {
-            getGrapeData(heldStack).setGrapeCount(remainingGrapes);
+            setGrapeCount(heldStack, remainingGrapes);
             resultHandStack = heldStack;
         } else {
             heldStack.shrink(1);
@@ -40,12 +39,7 @@ public class BunchOfGrapesItem extends GrapeLikeItem {
         }
 
         ItemStack grape = new ItemStack(ModItems.GRAPE.get());
-        setGrapeData(grape, new GrapeData(
-                getGrapeData(heldStack).getGrapeVariety(),
-                getGrapeData(heldStack).getVineyard(),
-                1,
-                getGrapeData(heldStack).isFrozen()
-        ));
+        setGrapeData(grape, getGrapeData(heldStack));
         if (!player.getInventory().add(grape)) {
             player.drop(grape, false);
         }

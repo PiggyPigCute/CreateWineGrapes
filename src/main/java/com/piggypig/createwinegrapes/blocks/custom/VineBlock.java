@@ -121,7 +121,7 @@ public class VineBlock extends Block {
             GrapeVariety variety = state.getValue(GRAPE_VARIETY);
             Vineyard vineyard = Vineyard.sample(level, pos);
             // TODO set frozen when icy + night
-            GrapeData grapeData = new GrapeData(variety, vineyard, 1, false);
+            GrapeData grapeData = new GrapeData(variety, vineyard, false, 0);
             int grapeCount = 4 + level.random.nextInt(3);
 
             List<ItemStack> drops = new ArrayList<>(grapeCount);
@@ -181,9 +181,10 @@ public class VineBlock extends Block {
             BunchOfGrapesItem.setGrapeData(bunchOfGrapes, new GrapeData(
                     state.getValue(GRAPE_VARIETY),
                     Vineyard.sample(serverLevel, pos),
-                    4 + level.random.nextInt(3),
-                    false
+                    false,
+                    0
             ));
+            BunchOfGrapesItem.setGrapeCount(bunchOfGrapes, 4 + level.random.nextInt(3));
             if (!player.getInventory().add(bunchOfGrapes)) {
                 player.drop(bunchOfGrapes, false);
             }

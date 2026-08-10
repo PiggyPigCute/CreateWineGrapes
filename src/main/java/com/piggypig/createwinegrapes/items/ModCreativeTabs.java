@@ -5,6 +5,7 @@ import com.piggypig.createwinegrapes.blocks.ModBlocks;
 import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
+import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -28,9 +29,10 @@ public class ModCreativeTabs {
                         GrapeLikeItem.setGrapeData(icon, new GrapeData(
                                 GrapeVariety.TEMPRANILLO,
                                 Vineyard.DEFAULT,
-                                6,
-                                false
+                                false,
+                                0
                         ));
+                        GrapeLikeItem.setGrapeCount(icon, BunchOfGrapesItem.MAX_GRAPES);
                         return icon;
                     })
                     .title(Component.translatable("creativetab.create_wine_grapes.create_wine_grapes_tab"))
@@ -50,9 +52,10 @@ public class ModCreativeTabs {
                             GrapeLikeItem.setGrapeData(bunchOfGrapes, new GrapeData(
                                     grapeVariety,
                                     Vineyard.DEFAULT,
-                                    6,
-                                    false
+                                    false,
+                                    0
                             ));
+                            GrapeLikeItem.setGrapeCount(bunchOfGrapes, BunchOfGrapesItem.MAX_GRAPES);
                             output.accept(bunchOfGrapes);
                         }
                         output.accept(ModItems.STEM);
@@ -61,8 +64,8 @@ public class ModCreativeTabs {
                             GrapeLikeItem.setGrapeData(grape, new GrapeData(
                                     grapeVariety,
                                     Vineyard.DEFAULT,
-                                    1,
-                                    false
+                                    false,
+                                    0
                             ));
                             output.accept(grape);
                         }

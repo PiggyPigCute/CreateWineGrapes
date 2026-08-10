@@ -17,4 +17,12 @@ public abstract class GrapeLikeItem extends Item {
     public static void setGrapeData(ItemStack stack, GrapeData grapeData) {
         stack.set(ModDataComponents.GRAPE_DATA.get(), grapeData);
     }
+
+    public static int getGrapeCount(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.GRAPE_COUNT.get(), 1);
+    }
+
+    public static void setGrapeCount(ItemStack stack, int grapeCount) {
+        stack.set(ModDataComponents.GRAPE_COUNT.get(), grapeCount);
+    }
 }

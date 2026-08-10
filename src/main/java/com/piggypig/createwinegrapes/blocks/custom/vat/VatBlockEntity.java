@@ -1,6 +1,8 @@
 package com.piggypig.createwinegrapes.blocks.custom.vat;
 
+import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
+import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
@@ -34,8 +36,10 @@ public class VatBlockEntity extends SmartBlockEntity {
     private BlockPos controllerPos;
     @Nullable
     private Direction forward;
-    @Nullable
     private FluidTank tank;
+
+    private static final int PROCESS_DURATION = 20;
+    private int processingTicks = PROCESS_DURATION;
 
     public VatBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -141,5 +145,27 @@ public class VatBlockEntity extends SmartBlockEntity {
             tank = newTank();
         if (tag.contains("Tank"))
             tank.readFromNBT(registries, tag.getCompound("Tank"));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (level == null || level.isClientSide) {
+            return;
+        }
+
+        if (tank.isEmpty() || !tank.getFluid().is(ModFluids.MUST.get())) {
+            return;
+        }
+
+        processingTicks -= 1;
+        if (processingTicks == 0) {
+            process();
+            processingTicks = PROCESS_DURATION;
+        }
+    }
+
+    private void process() {
+        CreateWineGrapes.LOGGER.debug("process !");
     }
 }

@@ -26,8 +26,8 @@ public class Vine {
         GrapeLikeItem.setGrapeData(grape, new GrapeData(
                 GrapeVariety.CABERNET_SAUVIGNON,
                 Vineyard.DEFAULT,
-                1,
-                false
+                false,
+                0
         ));
         scene.overlay().showControls(plantingSpot, Pointing.DOWN, 60)
                 .rightClick()
@@ -69,8 +69,8 @@ public class Vine {
             GrapeLikeItem.setGrapeData(grape, new GrapeData(
                     varieties.get(i),
                     Vineyard.DEFAULT,
-                    1,
-                    false
+                    false,
+                    0
             ));
             scene.overlay().showControls(plantingSpots.get(i), Pointing.DOWN, 60)
                     .rightClick()

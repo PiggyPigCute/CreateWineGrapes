@@ -47,7 +47,7 @@ public class CreateWineGrapesClient {
     @SubscribeEvent
     static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
         event.register(
-                (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeData(stack).getGrapeVariety().getColor() : -1,
+                (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeData(stack).grapeVariety().getColor() : -1,
                 ModItems.GRAPE.get(), ModItems.BUNCH_OF_GRAPES.get()
         );
     }
