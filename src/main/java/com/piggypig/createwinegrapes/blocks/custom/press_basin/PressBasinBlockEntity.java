@@ -283,7 +283,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                         variety,
                         vineyard,
                         Residue.NONE,
-                        herbaceousness
+                        herbaceousness,
                         fermentation,
                         false
                 )
