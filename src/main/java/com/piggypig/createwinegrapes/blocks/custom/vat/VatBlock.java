@@ -1,6 +1,7 @@
 package com.piggypig.createwinegrapes.blocks.custom.vat;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import net.minecraft.core.BlockPos;
@@ -31,7 +32,7 @@ import java.util.List;
  * by hand, so no runtime "try to connect to neighbours" logic is needed here. Breaking any one
  * of the 12 cells tears down the whole structure (see {@link #onRemove}).
  */
-public class VatBlock extends Block implements IBE<VatBlockEntity> {
+public class VatBlock extends Block implements IBE<VatBlockEntity>, IWrenchable {
 
     public static final int WIDTH = 2;
     public static final int HEIGHT = 3;
