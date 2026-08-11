@@ -18,9 +18,14 @@
   "item.create_wine_grapes.grape": "Grape",
   "item.create_wine_grapes.grape_marc": "Grape Marc",
   "item.create_wine_grapes.grape_juice_bucket": "Bucket of Grape Juice",
+  "item.create_wine_grapes.must_bottle": "Bottle of Must",
+  "item.create_wine_grapes.wine_bottle": "Bottle of Wine",
+  "item.create_wine_grapes.thick_wine_bottle": "Bottle of Thick Wine",
   "item.create_wine_grapes.stem": "Grapes stem",
   "fluid.create_wine_grapes.brandy": "Brandy",
   "fluid.create_wine_grapes.ethanol": "Ethanol",
   "fluid.create_wine_grapes.grape_juice": "Grape Juice",
-  "fluid.create_wine_grapes.must": "Must"
+  "fluid.create_wine_grapes.must": "Must",
+  "fluid.create_wine_grapes.wine": "Wine",
+  "fluid.create_wine_grapes.thick_wine": "Thick Wine"
 }

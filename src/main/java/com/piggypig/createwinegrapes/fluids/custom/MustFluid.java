@@ -2,6 +2,7 @@ package com.piggypig.createwinegrapes.fluids.custom;
 
 import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.data.custom.MustData;
+import com.piggypig.createwinegrapes.data.custom.MustKind;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import net.minecraft.core.BlockPos;
@@ -46,7 +47,11 @@ public class MustFluid extends VirtualFluid {
 
         @Override
         public @NotNull String getDescriptionId(@NotNull FluidStack stack) {
-            return "Must description";
+            return switch (MustKind.classify(MustFluid.getMustData(stack))) {
+                case MUST -> "fluid.create_wine_grapes.must";
+                case WINE -> "fluid.create_wine_grapes.wine";
+                case THICK_WINE -> "fluid.create_wine_grapes.thick_wine";
+            };
         }
 
         @Override

@@ -3,9 +3,12 @@ package com.piggypig.createwinegrapes.items;
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.data.ModDataComponents;
 import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
+import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
+import com.piggypig.createwinegrapes.fluids.custom.MustBottleFluidHandler;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import com.piggypig.createwinegrapes.items.custom.GrapeItem;
+import com.piggypig.createwinegrapes.items.custom.MustBottleItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -52,7 +55,17 @@ public class ModItems {
     public static final DeferredItem<Item> PRESS_MECHANISM = ITEMS.register("press_mechanism",
             () -> new Item(new Item.Properties()));
 
+    // Obtained by filling a glass bottle from a Vat, see MustBottleFluidHandler.
+    public static final DeferredItem<MustBottleItem> MUST_BOTTLE = ITEMS.register(
+            "must_bottle",
+            () -> new MustBottleItem(new Item.Properties()
+                    .stacksTo(16)
+                    .component(ModDataComponents.MUST_DATA.get(), MustData.DEFAULT)
+            )
+    );
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+        eventBus.addListener(MustBottleFluidHandler::registerCapabilities);
     }
 }

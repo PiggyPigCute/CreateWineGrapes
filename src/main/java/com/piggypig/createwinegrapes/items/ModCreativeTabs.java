@@ -72,6 +72,7 @@ public class ModCreativeTabs {
                         }
                         output.accept(ModItems.GRAPE);
                         output.accept(ModItems.GRAPE_MARC);
+                        output.accept(ModItems.MUST_BOTTLE);
                         output.accept(ModBlocks.MECHANICAL_DESTEMMER);
                         output.accept(ModBlocks.PRESS_BASIN);
                         output.accept(ModBlocks.VAT);
