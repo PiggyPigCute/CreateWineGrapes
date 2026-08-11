@@ -1,6 +1,5 @@
 package com.piggypig.createwinegrapes.blocks.custom.vat;
 
-import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.data.custom.FermentationData;
 import com.piggypig.createwinegrapes.data.custom.MustData;
@@ -32,7 +31,7 @@ import java.util.List;
  */
 public class VatBlockEntity extends SmartBlockEntity {
 
-    public static final int CAPACITY_PER_BLOCK = 4000; // mB, one Create tank block's worth
+    public static final int CAPACITY_PER_BLOCK = 8000;
     public static final int TOTAL_CAPACITY =
             CAPACITY_PER_BLOCK * VatBlock.WIDTH * VatBlock.WIDTH * VatBlock.HEIGHT;
 
