@@ -12,7 +12,7 @@ public enum MustKind {
     // generics
     MUST("must"),
     BAD_WINE("bad_wine"),
-    THICK_WINE("thick_must"),
+    THICK_WINE("thick_wine"),
     RED_WINE("red_wine"),
     WHITE_WINE("white_wine"),
     ROSE_WINE("rose_wine"),
