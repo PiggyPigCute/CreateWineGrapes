@@ -1,6 +1,8 @@
 package com.piggypig.createwinegrapes;
 
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
+import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import com.piggypig.createwinegrapes.ponder.CreateWineGrapesPonderPlugin;
@@ -49,6 +51,12 @@ public class CreateWineGrapesClient {
         event.register(
                 (stack, tintIndex) -> tintIndex == 0 ? BunchOfGrapesItem.getGrapeData(stack).grapeVariety().getColor() : -1,
                 ModItems.GRAPE.get(), ModItems.BUNCH_OF_GRAPES.get()
+        );
+        event.register(
+                (stack, tintIndex) -> tintIndex == 0
+                        ? stack.getOrDefault(ModDataComponents.MUST_DATA.get(), MustData.DEFAULT).grapeData().grapeVariety().getColor()
+                        : -1,
+                ModItems.MUST_BOTTLE.get()
         );
     }
 }

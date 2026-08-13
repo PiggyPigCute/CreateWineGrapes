@@ -42,7 +42,7 @@ public class MustFluid extends VirtualFluid {
 
         @Override
         public int getTintColor(FluidStack stack) {
-            return 0xff000000;
+            return MustFluid.getMustData(stack).grapeData().grapeVariety().getColor();
         }
 
         @Override
