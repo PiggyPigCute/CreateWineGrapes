@@ -3,6 +3,7 @@ package com.piggypig.createwinegrapes.blocks.custom.vat;
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.data.custom.FermentationData;
 import com.piggypig.createwinegrapes.data.custom.MustData;
+import com.piggypig.createwinegrapes.data.custom.Residue;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
@@ -186,9 +187,19 @@ public class VatBlockEntity extends SmartBlockEntity {
         MustData currentMustData = MustFluid.getMustData(fluidStack);
         FermentationData currentFermentationData = currentMustData.fermentationData();
         int currentFermentation = currentFermentationData.fermentation();
+        int currentHerbaceousness = currentMustData.herbaceousness();
+        Residue residue = currentMustData.residue();
+        int herbaceousnessAdd = switch (residue) {
+            case LOW, NONE -> 0;
+            case SKINS -> 1;
+            case STEMS -> 2;
+        };
 
-        MustFluid.setMustData(fluidStack, currentMustData.withFermentationData(
-                currentFermentationData.withFermentation(currentFermentation + 1)
-        ));
+        MustFluid.setMustData(fluidStack, currentMustData
+                .withFermentationData(
+                        currentFermentationData.withFermentation(currentFermentation + 1)
+                )
+                .withHerbaceousness(currentHerbaceousness + herbaceousnessAdd)
+        );
     }
 }
