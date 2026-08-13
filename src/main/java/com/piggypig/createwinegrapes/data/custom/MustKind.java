@@ -65,6 +65,10 @@ public enum MustKind {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static MustKind classify(MustData data) {
         if (data.fermentationData().fermentation() < FermentationData.MAX_FERMENTATION) {
             return MUST;
