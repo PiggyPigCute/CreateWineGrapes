@@ -227,6 +227,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
         int volume;
         GrapeData grapeData;
         int herbaceousness = 0;
+        boolean pressedWithStem = false;
         FermentationData fermentationData;
 
         if (!inputInventory.isEmpty()) {
@@ -236,7 +237,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
             for (int i = 0; i < inputInventory.getSlots(); i++) {
                 ItemStack stack = inputInventory.getStackInSlot(i);
                 if (stack.is(ModItems.BUNCH_OF_GRAPES.get())) {
-                    herbaceousness = 5;
+                    pressedWithStem = true;
                     break;
                 }
             }
@@ -248,7 +249,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
             grapeData = inputMustData.grapeData();
             herbaceousness = inputMustData.herbaceousness();
             if (inputMustData.residue() == Residue.STEMS) {
-                herbaceousness += 5;
+                pressedWithStem = true;
             }
             fermentationData = inputMustData.fermentationData();
         }
@@ -271,6 +272,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                         grapeData,
                         Residue.LOW,
                         herbaceousness,
+                        pressedWithStem,
                         fermentationData,
                         false
                 )

@@ -47,11 +47,7 @@ public class MustFluid extends VirtualFluid {
 
         @Override
         public @NotNull String getDescriptionId(@NotNull FluidStack stack) {
-            return switch (MustKind.classify(MustFluid.getMustData(stack))) {
-                case MUST -> "fluid.create_wine_grapes.must";
-                case WINE -> "fluid.create_wine_grapes.wine";
-                case THICK_WINE -> "fluid.create_wine_grapes.thick_wine";
-            };
+            return "fluid.create_wine_grapes." + MustKind.classify(MustFluid.getMustData(stack)).name();
         }
 
         @Override

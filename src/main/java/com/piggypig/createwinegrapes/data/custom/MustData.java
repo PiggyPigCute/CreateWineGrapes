@@ -10,6 +10,7 @@ public record MustData(
         GrapeData grapeData,
         Residue residue,
         int herbaceousness,
+        boolean pressedWithStem,
         FermentationData fermentationData,
         boolean badWine
 ) {
@@ -17,6 +18,7 @@ public record MustData(
             GrapeData.DEFAULT,
             Residue.NONE,
             0,
+            false,
             FermentationData.DEFAULT,
             false
     );
@@ -25,6 +27,7 @@ public record MustData(
             GrapeData.CODEC.fieldOf("grape_data").forGetter(MustData::grapeData),
             Residue.CODEC.fieldOf("residue").forGetter(MustData::residue),
             Codec.INT.fieldOf("herbaceousness").forGetter(MustData::herbaceousness),
+            Codec.BOOL.fieldOf("pressed_with_stem").forGetter(MustData::pressedWithStem),
             FermentationData.CODEC.fieldOf("fermentation_data").forGetter(MustData::fermentationData),
             Codec.BOOL.fieldOf("bad_wine").forGetter(MustData::badWine)
     ).apply(i, MustData::new));
@@ -34,28 +37,32 @@ public record MustData(
                     GrapeData.STREAM_CODEC, MustData::grapeData,
                     Residue.STREAM_CODEC, MustData::residue,
                     ByteBufCodecs.VAR_INT, MustData::herbaceousness,
+                    ByteBufCodecs.BOOL, MustData::pressedWithStem,
                     FermentationData.STREAM_CODEC, MustData::fermentationData,
                     ByteBufCodecs.BOOL, MustData::badWine,
                     MustData::new
             );
 
     public MustData withGrapeData(GrapeData grapeData) {
-        return new MustData(grapeData, residue, herbaceousness, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
     }
 
     public MustData withResidue(Residue residue) {
-        return new MustData(grapeData, residue, herbaceousness, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
     }
 
     public MustData withHerbaceousness(int herbaceousness) {
-        return new MustData(grapeData, residue, herbaceousness, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+    }
+    public MustData withPressedWithStem(boolean pressedWithStem) {
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
     }
 
     public MustData withFermentationData(FermentationData fermentationData) {
-        return new MustData(grapeData, residue, herbaceousness, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
     }
 
     public MustData withBadWine(boolean badWine) {
-        return new MustData(grapeData, residue, herbaceousness, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
     }
 }
