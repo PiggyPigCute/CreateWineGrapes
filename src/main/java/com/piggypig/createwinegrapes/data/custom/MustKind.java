@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public enum MustKind {
     // generics
     MUST("must"),
-    BAD_WINE("bad_wine"),
     THICK_WINE("thick_wine"),
     RED_WINE("red_wine"),
     WHITE_WINE("white_wine"),
@@ -81,7 +80,6 @@ public enum MustKind {
     }
 
     private static MustKind classifyWine(MustData data) {
-        // TODO classify badWine
         return switch (data.grapeData().grapeVariety()) {
             case NONE -> null;
             case CABERNET_SAUVIGNON -> classifyCabernetSauvignon(data);

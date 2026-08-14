@@ -274,8 +274,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                         Residue.LOW,
                         herbaceousness,
                         pressedWithStem,
-                        fermentationData,
-                        false
+                        fermentationData
                 )
         );
 
