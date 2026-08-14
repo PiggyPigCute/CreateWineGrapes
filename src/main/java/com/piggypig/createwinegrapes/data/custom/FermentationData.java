@@ -8,13 +8,12 @@ import net.minecraft.network.codec.StreamCodec;
 public record FermentationData(
         int fermentation,
         boolean qvevriFermented,
-        int fermentationLight,
         int carbonicLevel,
         boolean hasBrandy,
         int oakAging,
         boolean newOakAging,
         boolean heatAging,
-        boolean sugarAdded, // TODO à voir (champagne)
+        boolean sugarAdded,
         int bottleAging
 ) {
     public static final int MAX_FERMENTATION = 64;
@@ -22,7 +21,6 @@ public record FermentationData(
     public static final FermentationData DEFAULT = new FermentationData(
             0,
             false,
-            -1,
             -1,
             false,
             -1,
@@ -35,7 +33,6 @@ public record FermentationData(
     public static final Codec<FermentationData> CODEC = RecordCodecBuilder.create(i -> i.group(
             Codec.INT.fieldOf("fermentation").forGetter(FermentationData::fermentation),
             Codec.BOOL.fieldOf("qvevri_fermented").forGetter(FermentationData::qvevriFermented),
-            Codec.INT.fieldOf("fermentation_light").forGetter(FermentationData::fermentationLight),
             Codec.INT.fieldOf("carbonic_level").forGetter(FermentationData::carbonicLevel),
             Codec.BOOL.fieldOf("has_brandy").forGetter(FermentationData::hasBrandy),
             Codec.INT.fieldOf("oak_aging").forGetter(FermentationData::oakAging),
@@ -52,7 +49,6 @@ public record FermentationData(
                     (buf, data) -> {
                         buf.writeVarInt(data.fermentation());
                         buf.writeBoolean(data.qvevriFermented());
-                        buf.writeVarInt(data.fermentationLight());
                         buf.writeVarInt(data.carbonicLevel());
                         buf.writeBoolean(data.hasBrandy());
                         buf.writeVarInt(data.oakAging());
@@ -65,7 +61,6 @@ public record FermentationData(
                             buf.readVarInt(),
                             buf.readBoolean(),
                             buf.readVarInt(),
-                            buf.readVarInt(),
                             buf.readBoolean(),
                             buf.readVarInt(),
                             buf.readBoolean(),
@@ -76,42 +71,38 @@ public record FermentationData(
             );
 
     public FermentationData withFermentation(int fermentation) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withQvevriFermented(boolean qvevriFermented) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
-    }
-
-    public FermentationData withFermentationLight(int fermentationLight) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withCarbonicLevel(int carbonicLevel) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withHasBrandy(boolean hasBrandy) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withOakAging(int oakAging) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withNewOakAging(boolean newOakAging) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withHeatAging(boolean heatAging) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withSugarAdded(boolean sugarAdded) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 
     public FermentationData withBottleAging(int bottleAging) {
-        return new FermentationData(fermentation, qvevriFermented, fermentationLight, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
+        return new FermentationData(fermentation, qvevriFermented, carbonicLevel, hasBrandy, oakAging, newOakAging, heatAging, sugarAdded, bottleAging);
     }
 }
