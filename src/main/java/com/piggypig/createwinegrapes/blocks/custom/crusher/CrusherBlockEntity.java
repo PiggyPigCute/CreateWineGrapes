@@ -14,10 +14,14 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.item.SmartInventory;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.createmod.catnip.lang.LangBuilder;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.item.ItemStack;
@@ -27,6 +31,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import org.jetbrains.annotations.NotNull;
@@ -108,6 +113,62 @@ public class CrusherBlockEntity extends KineticBlockEntity implements IHaveGoggl
 
     public int getProcessingSpeed() {
         return Mth.clamp((int) Math.abs(getSpeed() / 16f), 1, 512);
+    }
+
+    private int countInputGrapes() {
+        int sum = 0;
+
+        for (int i = 0; i < inputInventory.getSlots(); i++) {
+            ItemStack stack = inputInventory.getStackInSlot(i);
+            sum += GrapeLikeItem.getGrapeCount(stack) * stack.getCount();
+        }
+
+        return sum;
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        CreateLang.translate("gui.goggles.basin_contents")
+                .forGoggles(tooltip);
+
+        if (fluidCapability == null)
+            fluidCapability = new FluidTank(0);
+
+        boolean isEmpty = true;
+
+        int grapeCount = countInputGrapes();
+        if (grapeCount > 0) {
+            CreateLang.text("")
+                    .add(Component.translatable(ModItems.GRAPE.get().getDescriptionId())
+                            .withStyle(ChatFormatting.GRAY))
+                    .add(CreateLang.text(" x" + grapeCount)
+                            .style(ChatFormatting.GREEN))
+                    .forGoggles(tooltip, 1);
+            isEmpty = false;
+        }
+
+        LangBuilder mb = CreateLang.translate("generic.unit.millibuckets");
+        for (int i = 0; i < fluidCapability.getTanks(); i++) {
+            FluidStack fluidStack = fluidCapability.getFluidInTank(i);
+            if (fluidStack.isEmpty())
+                continue;
+            CreateLang.text("")
+                    .add(CreateLang.fluidName(fluidStack)
+                            .add(CreateLang.text(" "))
+                            .style(ChatFormatting.GRAY)
+                            .add(CreateLang.number(fluidStack.getAmount())
+                                    .add(mb)
+                                    .style(ChatFormatting.BLUE)))
+                    .forGoggles(tooltip, 1);
+            isEmpty = false;
+        }
+
+        if (isEmpty) {
+            tooltip.removeLast();
+            return false;
+        }
+
+        return true;
     }
 
 

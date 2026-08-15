@@ -75,6 +75,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MUST_BOTTLE);
                         output.accept(ModBlocks.MECHANICAL_DESTEMMER);
                         output.accept(ModBlocks.PRESS_BASIN);
+                        output.accept(ModBlocks.CRUSHER);
                         output.accept(ModBlocks.VAT);
                     })
                     .build());
