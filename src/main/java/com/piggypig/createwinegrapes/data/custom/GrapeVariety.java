@@ -45,4 +45,11 @@ public enum GrapeVariety implements StringRepresentable {
         return 0xFF000000 | color;
     }
 
+    public final boolean isRed() {
+        return switch (this) {
+            case CABERNET_SAUVIGNON, TEMPRANILLO, PINOT_NOIR, GAMAY -> true;
+            case RIESLING, CHARDONNAY, RKATSITELI, MALVASIA, NONE-> false;
+        };
+    }
+
 }

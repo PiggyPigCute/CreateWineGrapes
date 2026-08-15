@@ -9,9 +9,14 @@ import org.jetbrains.annotations.NotNull;
  * further classifying steps (aging, etc.) apply the same regardless of how fermented the batch is.
  */
 public enum MustKind {
-    // generics
-    MUST("must"),
-    THICK_WINE("thick_wine"),
+    // during process
+    RED_MUST("red_must"),
+    WHITE_MUST("white_must"),
+    ROSE_MUST("rose_must"),
+    ORANGE_MUST("orange_must"),
+    THICK_RED_WINE("thick_red_wine"),
+    THICK_ORANGE_WINE("thick_orange_wine"),
+    // generic wines
     RED_WINE("red_wine"),
     WHITE_WINE("white_wine"),
     ROSE_WINE("rose_wine"),
@@ -68,14 +73,36 @@ public enum MustKind {
         return name;
     }
 
+    public static boolean isFamousWine(MustKind kind) {
+        return switch (kind) {
+            case RED_MUST, WHITE_MUST, ROSE_MUST, ORANGE_MUST,
+                 THICK_RED_WINE, THICK_ORANGE_WINE,
+                 RED_WINE, WHITE_WINE, ROSE_WINE, ORANGE_WINE -> false;
+            default -> true;
+        };
+    }
+
     public static MustKind classify(MustData data) {
         if (data.fermentationData().fermentation() < FermentationData.MAX_FERMENTATION) {
-            return MUST;
+            return classifyMust(data);
         }
         // TODO classify hasBrandy()
         return switch (data.residue()) {
             case LOW, NONE -> classifyWine(data);
-            case STEMS, SKINS -> THICK_WINE;
+            case STEMS, SKINS -> data.grapeData().grapeVariety().isRed()
+                    ? THICK_RED_WINE
+                    : THICK_ORANGE_WINE;
+        };
+    }
+
+    private static MustKind classifyMust(MustData data) {
+        return switch (data.residue()) {
+            case LOW, NONE -> data.grapeData().grapeVariety().isRed()
+                    ? ROSE_MUST
+                    : WHITE_MUST;
+            case STEMS, SKINS -> data.grapeData().grapeVariety().isRed()
+                    ? RED_MUST
+                    : ORANGE_MUST;
         };
     }
 
@@ -91,6 +118,13 @@ public enum MustKind {
             case RKATSITELI -> classifyRkatsiteli(data);
             case MALVASIA -> classifyMalvasia(data);
         };
+    }
+
+    private static MustKind classifyMust(int herbaceousness) {
+        if (herbaceousness >= 64) {
+            return RED_WINE;
+        }
+        return ROSE_WINE;
     }
 
     private static MustKind classifyRedGrapeWine(int herbaceousness) {
