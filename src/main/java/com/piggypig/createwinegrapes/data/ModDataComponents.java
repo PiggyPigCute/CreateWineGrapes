@@ -7,8 +7,10 @@ import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
 import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.data.custom.Vineyard;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -57,6 +59,15 @@ public class ModDataComponents {
                     builder -> builder
                             .persistent(Vineyard.CODEC)
                             .networkSynchronized(Vineyard.STREAM_CODEC)
+            );
+
+    // Absent when the bottle isn't capped; holds the exact button item used as a cork otherwise.
+    public static final Supplier<DataComponentType<Item>> CAPPED =
+            DATA_COMPONENTS.registerComponentType(
+                    "capped",
+                    builder -> builder
+                            .persistent(BuiltInRegistries.ITEM.byNameCodec())
+                            .networkSynchronized(ByteBufCodecs.registry(Registries.ITEM))
             );
 
     public static void register(IEventBus modEventBus) {

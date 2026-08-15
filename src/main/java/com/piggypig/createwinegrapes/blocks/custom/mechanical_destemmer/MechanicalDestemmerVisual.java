@@ -53,4 +53,10 @@ public class MechanicalDestemmerVisual extends SingleAxisRotatingVisual<Mechanic
         super.collectCrumblingInstances(consumer);
         consumer.accept(pipe);
     }
+
+    @Override
+    public void updateLight(float partialTick) {
+        super.updateLight(partialTick);
+        relight(pipe);
+    }
 }
