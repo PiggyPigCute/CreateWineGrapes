@@ -17,9 +17,10 @@ public class MustBottleItem extends Item {
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
         MustData data = stack.getOrDefault(ModDataComponents.MUST_DATA.get(), MustData.DEFAULT);
-        Component name = Component.translatable(
-                "item.create_wine_grapes.must_bottle." + MustKind.classify(data).getName()
+        Component kindName = Component.translatable(
+                "fluid.create_wine_grapes.must." + MustKind.classify(data).getName()
         );
+        Component name = Component.translatable("item.create_wine_grapes.must_bottle.format", kindName);
         if (!stack.has(ModDataComponents.CAPPED.get())) {
             return Component.translatable("item.create_wine_grapes.must_bottle.uncapped", name);
         }
