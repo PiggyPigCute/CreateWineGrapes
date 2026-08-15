@@ -154,7 +154,8 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
     @Override
     public float calculateStressApplied() {
         if (locked) {
-            return 1000000f;
+            lastStressApplied = 1000000f;
+            return lastStressApplied;
         }
         return super.calculateStressApplied();
     }
@@ -273,8 +274,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                         Residue.LOW,
                         herbaceousness,
                         pressedWithStem,
-                        fermentationData,
-                        false
+                        fermentationData
                 )
         );
 

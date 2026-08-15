@@ -18,7 +18,7 @@ public class MustBottleItem extends Item {
     public @NotNull Component getName(@NotNull ItemStack stack) {
         MustData data = stack.getOrDefault(ModDataComponents.MUST_DATA.get(), MustData.DEFAULT);
         return Component.translatable(
-                "item.create_wine_grapes.must_bottle." + MustKind.classify(data).name()
+                "item.create_wine_grapes.must_bottle." + MustKind.classify(data).getName()
         );
     }
 }

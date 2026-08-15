@@ -11,16 +11,14 @@ public record MustData(
         Residue residue,
         int herbaceousness,
         boolean pressedWithStem,
-        FermentationData fermentationData,
-        boolean badWine
+        FermentationData fermentationData
 ) {
     public static final MustData DEFAULT = new MustData(
             GrapeData.DEFAULT,
             Residue.NONE,
             0,
             false,
-            FermentationData.DEFAULT,
-            false
+            FermentationData.DEFAULT
     );
 
     public static final Codec<MustData> CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -28,8 +26,7 @@ public record MustData(
             Residue.CODEC.fieldOf("residue").forGetter(MustData::residue),
             Codec.INT.fieldOf("herbaceousness").forGetter(MustData::herbaceousness),
             Codec.BOOL.fieldOf("pressed_with_stem").forGetter(MustData::pressedWithStem),
-            FermentationData.CODEC.fieldOf("fermentation_data").forGetter(MustData::fermentationData),
-            Codec.BOOL.fieldOf("bad_wine").forGetter(MustData::badWine)
+            FermentationData.CODEC.fieldOf("fermentation_data").forGetter(MustData::fermentationData)
     ).apply(i, MustData::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, MustData> STREAM_CODEC =
@@ -39,30 +36,25 @@ public record MustData(
                     ByteBufCodecs.VAR_INT, MustData::herbaceousness,
                     ByteBufCodecs.BOOL, MustData::pressedWithStem,
                     FermentationData.STREAM_CODEC, MustData::fermentationData,
-                    ByteBufCodecs.BOOL, MustData::badWine,
                     MustData::new
             );
 
     public MustData withGrapeData(GrapeData grapeData) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData);
     }
 
     public MustData withResidue(Residue residue) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData);
     }
 
     public MustData withHerbaceousness(int herbaceousness) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData);
     }
     public MustData withPressedWithStem(boolean pressedWithStem) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData);
     }
 
     public MustData withFermentationData(FermentationData fermentationData) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
-    }
-
-    public MustData withBadWine(boolean badWine) {
-        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData, badWine);
+        return new MustData(grapeData, residue, herbaceousness, pressedWithStem, fermentationData);
     }
 }

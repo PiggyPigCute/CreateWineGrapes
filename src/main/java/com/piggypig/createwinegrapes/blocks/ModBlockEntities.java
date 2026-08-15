@@ -2,6 +2,8 @@ package com.piggypig.createwinegrapes.blocks;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 
+import com.piggypig.createwinegrapes.blocks.custom.crusher.CrusherBlockEntity;
+import com.piggypig.createwinegrapes.blocks.custom.crusher.CrusherVisual;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerBlockEntity;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerRenderer;
 import com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer.MechanicalDestemmerVisual;
@@ -21,6 +23,13 @@ public class ModBlockEntities {
                     .renderer(() -> MechanicalDestemmerRenderer::new)
                     .register();
 
+    public static final BlockEntityEntry<CrusherBlockEntity> CRUSHER =
+            CreateWineGrapes.REGISTRATE
+                    .blockEntity("crusher", CrusherBlockEntity::new)
+                    .visual(() -> CrusherVisual::new)
+                    .validBlocks(ModBlocks.CRUSHER)
+                    .register();
+
     public static final BlockEntityEntry<PressBasinBlockEntity> PRESS_BASIN =
             CreateWineGrapes.REGISTRATE
                     .blockEntity("press_basin", PressBasinBlockEntity::new)
@@ -36,6 +45,7 @@ public class ModBlockEntities {
 
     public static void register(IEventBus eventBus) {
         eventBus.addListener(MechanicalDestemmerBlockEntity::registerCapabilities);
+        eventBus.addListener(CrusherBlockEntity::registerCapabilities);
         eventBus.addListener(PressBasinBlockEntity::registerCapabilities);
         eventBus.addListener(VatBlockEntity::registerCapabilities);
     }
