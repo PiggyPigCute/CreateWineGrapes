@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "create_wine_grapes:block/crusher/block"
+    },
+    "facing=east": {
+      "model": "create_wine_grapes:block/crusher/block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "create_wine_grapes:block/crusher/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "create_wine_grapes:block/crusher/block",
+      "y": 270
+    }
+  }
+}

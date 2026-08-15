@@ -1,6 +1,6 @@
 package com.piggypig.createwinegrapes.blocks.custom.crusher;
 
-import com.simibubi.create.AllPartialModels;
+import com.piggypig.createwinegrapes.blocks.ModPartialModels;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import dev.engine_room.flywheel.api.task.Plan;
 import dev.engine_room.flywheel.api.visual.DynamicVisual;
@@ -12,7 +12,7 @@ import dev.engine_room.flywheel.lib.visual.SimpleDynamicVisual;
 public class CrusherVisual extends SingleAxisRotatingVisual<CrusherBlockEntity> implements SimpleDynamicVisual {
 
     public CrusherVisual(VisualizationContext context, CrusherBlockEntity blockEntity, float partialTick) {
-        super(context, blockEntity, partialTick, Models.partial(AllPartialModels.SHAFT));
+        super(context, blockEntity, partialTick, Models.partial(ModPartialModels.CRUSHER_ROTOR));
     }
 
     @Override
