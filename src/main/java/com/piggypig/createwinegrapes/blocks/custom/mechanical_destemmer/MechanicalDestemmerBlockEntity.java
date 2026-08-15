@@ -2,7 +2,7 @@ package com.piggypig.createwinegrapes.blocks.custom.mechanical_destemmer;
 
 import com.piggypig.createwinegrapes.blocks.ModBlockEntities;
 import com.piggypig.createwinegrapes.items.ModItems;
-import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
+import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -101,7 +101,7 @@ public class MechanicalDestemmerBlockEntity extends KineticBlockEntity {
         }
 
         if (getSpeed() == 0) {
-            return; // pause : la rotation s'est arrêtée, on ne perd pas la progression
+            return;
         }
 
         if (processingTicks == -1) {
@@ -121,16 +121,16 @@ public class MechanicalDestemmerBlockEntity extends KineticBlockEntity {
     }
 
     private void finishProcessing(ItemStack bunch) {
-        int grapeCount = BunchOfGrapesItem.getGrapeCount(bunch);
-        dropGrapeBelow(grapeCount);
+        dropGrapeBelow(bunch);
         dropStem();
 
         inputInv.setStackInSlot(0, ItemStack.EMPTY);
     }
 
-    private void dropGrapeBelow(int grapeCount) {
+    private void dropGrapeBelow(ItemStack bunch) {
         if (level == null) return;
-        ItemStack grape = new ItemStack(ModItems.GRAPE.get(), grapeCount);
+        ItemStack grape = new ItemStack(ModItems.GRAPE.get(), GrapeLikeItem.getGrapeCount(bunch));
+        GrapeLikeItem.setGrapeData(grape, GrapeLikeItem.getGrapeData(bunch));
         dropOrInsert(grape, worldPosition);
     }
 
