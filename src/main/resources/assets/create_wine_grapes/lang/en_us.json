@@ -18,6 +18,7 @@
   "item.create_wine_grapes.grape": "Grape",
   "item.create_wine_grapes.grape_marc": "Grape Marc",
   "item.create_wine_grapes.grape_juice_bucket": "Bucket of Grape Juice",
+  "item.create_wine_grapes.must_bottle.uncapped":  "Uncapped %s",
   "item.create_wine_grapes.must_bottle.must":  "Bottle of Must",
   "item.create_wine_grapes.must_bottle.bad_wine":  "Bottle of Bad Wine",
   "item.create_wine_grapes.must_bottle.thick_wine":  "Bottle of Thick Wine",
