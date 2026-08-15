@@ -1,6 +1,7 @@
 package com.piggypig.createwinegrapes.items.custom;
 
 import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.data.custom.GrapeData;
 import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.data.custom.MustKind;
 import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
@@ -25,5 +26,9 @@ public class MustBottleItem extends Item {
             return Component.translatable("item.create_wine_grapes.must_bottle.uncapped", name);
         }
         return name;
+    }
+
+    public static void setMustData(ItemStack stack, MustData mustData) {
+        stack.set(ModDataComponents.MUST_DATA.get(), mustData);
     }
 }

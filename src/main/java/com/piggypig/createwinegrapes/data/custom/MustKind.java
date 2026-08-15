@@ -1,5 +1,7 @@
 package com.piggypig.createwinegrapes.data.custom;
 
+import com.piggypig.createwinegrapes.CreateWineGrapes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,67 +12,118 @@ import org.jetbrains.annotations.NotNull;
  */
 public enum MustKind {
     // during process
-    RED_MUST("red_must"),
-    WHITE_MUST("white_must"),
-    ROSE_MUST("rose_must"),
-    ORANGE_MUST("orange_must"),
-    THICK_RED_WINE("thick_red_wine"),
-    THICK_ORANGE_WINE("thick_orange_wine"),
+    RED_MUST("red_must", 0xFF7A1020, BaseTexture.THICK),
+    WHITE_MUST("white_must", 0xFFEEDD88, BaseTexture.MUST),
+    ROSE_MUST("rose_must", 0xFFA31545, BaseTexture.MUST),
+    ORANGE_MUST("orange_must", 0xFFE3C77A, BaseTexture.THICK),
+    THICK_RED_WINE("thick_red_wine", 0xFF5A0A18, BaseTexture.THICK),
+    THICK_ORANGE_WINE("thick_orange_wine", 0xFFB86A20, BaseTexture.THICK),
     // generic wines
-    RED_WINE("red_wine"),
-    WHITE_WINE("white_wine"),
-    ROSE_WINE("rose_wine"),
-    ORANGE_WINE("orange_wine"),
+    RED_WINE("red_wine", 0xFF7B1128, BaseTexture.WINE),
+    WHITE_WINE("white_wine", 0xFFF0E6A0, BaseTexture.WINE),
+    ROSE_WINE("rose_wine", 0xFFE59BB0, BaseTexture.WINE),
+    ORANGE_WINE("orange_wine", 0xFFD98A3D, BaseTexture.WINE),
     // cabernet sauvignon
-    MEDOC("medoc"), YOUNG_MEDOC("young_medoc"),
-    NIAGARA_ICEWINE("niagara_icewine"),
-    NAPA_VALLEY("napa_valley"), YOUNG_NAPA_VALLEY("young_napa_valley"),
-    SUPER_TUSCAN("super_tuscan"), YOUNG_SUPER_TUSCAN("young_super_tuscan"),
+    MEDOC("medoc", 0xFF6E0E1E, BaseTexture.WINE),
+    YOUNG_MEDOC("young_medoc", 0xFF8A1B2E, BaseTexture.WINE),
+    NIAGARA_ICEWINE("niagara_icewine", 0xFFE8A33D, BaseTexture.WINE),
+    NAPA_VALLEY("napa_valley", 0xFF751026, BaseTexture.WINE),
+    YOUNG_NAPA_VALLEY("young_napa_valley", 0xFF8F1D33, BaseTexture.WINE),
+    SUPER_TUSCAN("super_tuscan", 0xFF63091A, BaseTexture.WINE),
+    YOUNG_SUPER_TUSCAN("young_super_tuscan", 0xFF7E1830, BaseTexture.WINE),
     // tempranillo
-    PORTO("porto"),
-    RIOJA("rioja"), YOUNG_RIOJA("young_rioja"),
-    ALENTEJO_ARAGONEZ("alentejo_aragonez"),
-    MENDOZA_TEMPRANILLO("mendoza_tempranillo"), YOUNG_MENDOZA_TEMPRANILLO("young_mendoza_tempranillo"),
+    PORTO("porto", 0xFF4A0818, BaseTexture.WINE),
+    RIOJA("rioja", 0xFF7A1428, BaseTexture.WINE),
+    YOUNG_RIOJA("young_rioja", 0xFF95233C, BaseTexture.WINE),
+    ALENTEJO_ARAGONEZ("alentejo_aragonez", 0xFF701226, BaseTexture.WINE),
+    MENDOZA_TEMPRANILLO("mendoza_tempranillo", 0xFF7C1730, BaseTexture.WINE),
+    YOUNG_MENDOZA_TEMPRANILLO("young_mendoza_tempranillo", 0xFF96253F, BaseTexture.WINE),
     // pinot noir
-    ROSE_CHAMPAGNE("rose_champagne"), YOUNG_ROSE_CHAMPAGNE("young_rose_champagne"),
-    NUITS_SAINT_GEORGES("nuits_saint_georges"), YOUNG_NUITS_SAINT_GEORGES("young_nuits_saint_georges"),
-    SANCERRE_ROUGE("sancerre_rouge"), YOUNG_SANCERRE_ROUGE("young_sancerre_rouge"),
-    MARSANNAY_ROSE("marsannay_rose"),
+    ROSE_CHAMPAGNE("rose_champagne", 0xFFE9AFC2, BaseTexture.WINE),
+    YOUNG_ROSE_CHAMPAGNE("young_rose_champagne", 0xFFF0C4D3, BaseTexture.WINE),
+    NUITS_SAINT_GEORGES("nuits_saint_georges", 0xFF8A1F35, BaseTexture.WINE),
+    YOUNG_NUITS_SAINT_GEORGES("young_nuits_saint_georges", 0xFFA33049, BaseTexture.WINE),
+    SANCERRE_ROUGE("sancerre_rouge", 0xFF8C2238, BaseTexture.WINE),
+    YOUNG_SANCERRE_ROUGE("young_sancerre_rouge", 0xFFA6334C, BaseTexture.WINE),
+    MARSANNAY_ROSE("marsannay_rose", 0xFFDB9AB0, BaseTexture.WINE),
     // gamay
-    BEAUJOLAIS_NOUVEAU("beaujolais_nouveau"),
-    MOULIN_A_VENT("moulin_a_vent"), YOUNG_MOULIN_A_VENT("young_moulin_a_vent"),
-    BEAUJOLAIS_ROSE("beaujolais_rose"),
-    SORRENBERG_GAMAY("sorrenberg_gamay"), YOUNG_SORRENBERG_GAMAY("young_sorrenberg_gamay"),
+    BEAUJOLAIS_NOUVEAU("beaujolais_nouveau", 0xFFA83A52, BaseTexture.WINE),
+    MOULIN_A_VENT("moulin_a_vent", 0xFF8F2C42, BaseTexture.WINE),
+    YOUNG_MOULIN_A_VENT("young_moulin_a_vent", 0xFFA83D57, BaseTexture.WINE),
+    BEAUJOLAIS_ROSE("beaujolais_rose", 0xFFE2A6BA, BaseTexture.WINE),
+    SORRENBERG_GAMAY("sorrenberg_gamay", 0xFF9A3349, BaseTexture.WINE),
+    YOUNG_SORRENBERG_GAMAY("young_sorrenberg_gamay", 0xFFB3455C, BaseTexture.WINE),
     // riesling
-    EISWEIN("eiswein"),
-    RIESLING_ELSASS("riesling_elsass"),
-    CONTROGUERRA_RIESLING("controguerra_riesling"),
-    CLARE_VALLEY_RIESLING("clare_valley_riesling"),
+    EISWEIN("eiswein", 0xFFF2D889, BaseTexture.WINE),
+    RIESLING_ELSASS("riesling_elsass", 0xFFE9E39E, BaseTexture.WINE),
+    CONTROGUERRA_RIESLING("controguerra_riesling", 0xFFE2DB8E, BaseTexture.WINE),
+    CLARE_VALLEY_RIESLING("clare_valley_riesling", 0xFFEDE7A8, BaseTexture.WINE),
     // chardonnay
-    CHAMPAGNE("champagne"), YOUNG_CHAMPAGNE("young_champagne"),
-    CHABLIS("chablis"),
-    VIN_DE_PAILLE("vin_de_paille"),
-    RUSSIAN_RIVER_VALLEY("russian_river_valley"), YOUNG_RUSSIAN_RIVER_VALLEY("young_russian_river_valley"),
+    CHAMPAGNE("champagne", 0xFFF0DE93, BaseTexture.WINE),
+    YOUNG_CHAMPAGNE("young_champagne", 0xFFF5E6AC, BaseTexture.WINE),
+    CHABLIS("chablis", 0xFFE9DC8E, BaseTexture.WINE),
+    VIN_DE_PAILLE("vin_de_paille", 0xFFE0B33D, BaseTexture.WINE),
+    RUSSIAN_RIVER_VALLEY("russian_river_valley", 0xFFE7C765, BaseTexture.WINE),
+    YOUNG_RUSSIAN_RIVER_VALLEY("young_russian_river_valley", 0xFFEFD583, BaseTexture.WINE),
     // rkatsiteli
-    KAKHURI_QVEVRI_AMBER("kakhuri_qvevri_amber"),
-    KARDEMAKHI("kardemakhi"),
-    ODESA_RKATSITELI("odesa_rkatsiteli"),
-    TRAKIJA_RKATSITELI("trakija_rkatsiteli"),
+    KAKHURI_QVEVRI_AMBER("kakhuri_qvevri_amber", 0xFFC17A2E, BaseTexture.WINE),
+    KARDEMAKHI("kardemakhi", 0xFFCE9048, BaseTexture.WINE),
+    ODESA_RKATSITELI("odesa_rkatsiteli", 0xFFE0C878, BaseTexture.WINE),
+    TRAKIJA_RKATSITELI("trakija_rkatsiteli", 0xFFE3CB7E, BaseTexture.WINE),
     // malvasia
-    MADEIRA_MALMSEY("madeira_malmsey"), YOUNG_MADEIRA_MALMSEY("young_madeira_malmsey"),
-    MALVASIA_DELLE_LIPARI("malvasia_delle_lipari"),
-    MALVAZIJA_ISTARSKA("malvazija_istarska"),
-    MALVASIA_DE_RIOJA("malvasia_de_rioja")
+    MADEIRA_MALMSEY("madeira_malmsey", 0xFFA8641F, BaseTexture.WINE),
+    YOUNG_MADEIRA_MALMSEY("young_madeira_malmsey", 0xFFC07E32, BaseTexture.WINE),
+    MALVASIA_DELLE_LIPARI("malvasia_delle_lipari", 0xFFE7CE86, BaseTexture.WINE),
+    MALVAZIJA_ISTARSKA("malvazija_istarska", 0xFFE1D08E, BaseTexture.WINE),
+    MALVASIA_DE_RIOJA("malvasia_de_rioja", 0xFFDFCB82, BaseTexture.WINE)
     ;
 
     private final String name;
+    private final int color;
+    private final BaseTexture texture;
 
-    MustKind(String name) {
+    MustKind(String name, int color, BaseTexture texture) {
         this.name = name;
+        this.color = color;
+        this.texture = texture;
     }
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * ARGB tint applied to {@link #getTexture()}'s gray base texture. Placeholder values, tweak freely.
+     */
+    public int getColor() {
+        return color;
+    }
+
+    /**
+     * Which of the gray base liquid textures (see {@code textures/block/must/}) this kind is tinted onto.
+     * Placeholder assignments, tweak freely.
+     */
+    public BaseTexture getTexture() {
+        return texture;
+    }
+
+    /**
+     * The gray base liquid textures that every {@link MustKind}'s {@link #getColor()} is tinted onto.
+     */
+    public enum BaseTexture {
+        MUST("must"),
+        THICK("thick"),
+        WINE("wine");
+
+        private final ResourceLocation location;
+
+        BaseTexture(String fileName) {
+            this.location = ResourceLocation.fromNamespaceAndPath(CreateWineGrapes.MOD_ID, "block/must/" + fileName);
+        }
+
+        public ResourceLocation getLocation() {
+            return location;
+        }
     }
 
     public static boolean isFamousWine(MustKind kind) {

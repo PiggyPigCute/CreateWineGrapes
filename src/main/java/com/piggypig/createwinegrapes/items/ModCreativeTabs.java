@@ -2,11 +2,10 @@ package com.piggypig.createwinegrapes.items;
 
 import com.piggypig.createwinegrapes.CreateWineGrapes;
 import com.piggypig.createwinegrapes.blocks.ModBlocks;
-import com.piggypig.createwinegrapes.data.custom.GrapeData;
-import com.piggypig.createwinegrapes.data.custom.GrapeVariety;
-import com.piggypig.createwinegrapes.data.custom.Vineyard;
+import com.piggypig.createwinegrapes.data.custom.*;
 import com.piggypig.createwinegrapes.items.custom.BunchOfGrapesItem;
 import com.piggypig.createwinegrapes.items.custom.GrapeLikeItem;
+import com.piggypig.createwinegrapes.items.custom.MustBottleItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -77,6 +76,90 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.PRESS_BASIN);
                         output.accept(ModBlocks.CRUSHER);
                         output.accept(ModBlocks.VAT);
+                        ArrayList<MustData> musts = new ArrayList<>(List.of(
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.SKINS,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.RKATSITELI, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.RKATSITELI, Vineyard.DEFAULT,false, 0),
+                                        Residue.SKINS,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.SKINS,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.RKATSITELI, Vineyard.DEFAULT,false, 0),
+                                        Residue.SKINS,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.SKINS,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        64,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.RKATSITELI, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.CABERNET_SAUVIGNON, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        0,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                ),
+                                new MustData(
+                                        new GrapeData(GrapeVariety.RKATSITELI, Vineyard.DEFAULT,false, 0),
+                                        Residue.LOW,
+                                        64,
+                                        false,
+                                        FermentationData.DEFAULT.withFermentation(64)
+                                )
+                        ));
+                        for (MustData mustData : musts) {
+                            ItemStack mustBottle = new ItemStack(ModItems.MUST_BOTTLE.get());
+                            MustBottleItem.setMustData(mustBottle, mustData);
+                            output.accept(mustBottle);
+                        }
                     })
                     .build());
 

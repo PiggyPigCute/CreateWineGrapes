@@ -9,8 +9,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.FluidState;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 public class MustFluid extends VirtualFluid {
 
@@ -42,7 +45,8 @@ public class MustFluid extends VirtualFluid {
 
         @Override
         public int getTintColor(FluidStack stack) {
-            return MustFluid.getMustData(stack).grapeData().grapeVariety().getColor();
+            MustKind kind = MustKind.classify(MustFluid.getMustData(stack));
+            return kind == null ? NO_TINT : kind.getColor();
         }
 
         @Override
@@ -53,6 +57,48 @@ public class MustFluid extends VirtualFluid {
         @Override
         protected int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
             return NO_TINT;
+        }
+
+        private static ResourceLocation textureFor(FluidStack stack) {
+            MustKind kind = MustKind.classify(MustFluid.getMustData(stack));
+            return (kind == null ? MustKind.BaseTexture.MUST : kind.getTexture()).getLocation();
+        }
+
+        @Override
+        public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+            consumer.accept(new IClientFluidTypeExtensions() {
+
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return MustKind.BaseTexture.MUST.getLocation();
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return MustKind.BaseTexture.MUST.getLocation();
+                }
+
+                @Override
+                public ResourceLocation getStillTexture(FluidStack stack) {
+                    return textureFor(stack);
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture(FluidStack stack) {
+                    return textureFor(stack);
+                }
+
+                @Override
+                public int getTintColor(FluidStack stack) {
+                    return MustFluidType.this.getTintColor(stack);
+                }
+
+                @Override
+                public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
+                    return MustFluidType.this.getTintColor(state, getter, pos);
+                }
+
+            });
         }
 
     }
