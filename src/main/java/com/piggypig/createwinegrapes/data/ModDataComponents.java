@@ -62,7 +62,7 @@ public class ModDataComponents {
             );
 
     // Absent when the bottle isn't capped; holds the exact button item used as a cork otherwise.
-    public static final Supplier<DataComponentType<Item>> CAPPED =
+    public static final Supplier<DataComponentType<Item>> CAP =
             DATA_COMPONENTS.registerComponentType(
                     "capped",
                     builder -> builder

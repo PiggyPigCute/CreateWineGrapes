@@ -3,5 +3,10 @@
   "textures": {
     "layer0": "minecraft:item/potion_overlay",
     "layer1": "minecraft:item/potion"
-  }
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 0 }, "model": "create_wine_grapes:item/must_bottle/must" },
+    { "predicate": { "custom_model_data": 1 }, "model": "create_wine_grapes:item/must_bottle/thick" },
+    { "predicate": { "custom_model_data": 2 }, "model": "create_wine_grapes:item/must_bottle/wine" }
+  ]
 }

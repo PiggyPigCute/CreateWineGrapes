@@ -25,7 +25,7 @@ import java.util.Optional;
  * fermentation state, ...). Instead we hook {@link DeployerRecipeSearchEvent} - the same extension point Create
  * itself uses for Sequenced Assembly - to build the recipe result from a copy of the actual input stack via
  * {@link com.simibubi.create.content.processing.recipe.ProcessingRecipe#enforceNextResult}, only flipping
- * {@link ModDataComponents#CAPPED}.
+ * {@link ModDataComponents#CAP}.
  */
 @EventBusSubscriber(modid = CreateWineGrapes.MOD_ID)
 public class MustBottleCappingHandler {
@@ -48,7 +48,7 @@ public class MustBottleCappingHandler {
 
         if (!bottle.is(ModItems.MUST_BOTTLE.get()))
             return;
-        if (bottle.has(ModDataComponents.CAPPED.get()))
+        if (bottle.has(ModDataComponents.CAP.get()))
             return;
         if (!tool.is(ItemTags.WOODEN_BUTTONS))
             return;
@@ -67,7 +67,7 @@ public class MustBottleCappingHandler {
         // instead of the static "output" template above (which only serves as a JEI/validation placeholder).
         recipe.enforceNextResult(() -> {
             ItemStack capped = bottle.copyWithCount(1);
-            capped.set(ModDataComponents.CAPPED.get(), corkItem);
+            capped.set(ModDataComponents.CAP.get(), corkItem);
             return capped;
         });
 

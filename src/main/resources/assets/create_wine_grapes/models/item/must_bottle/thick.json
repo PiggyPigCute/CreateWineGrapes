@@ -1,0 +1,6 @@
+{
+  "parent": "create_wine_grapes:item/must_bottle/base",
+  "textures": {
+    "2": "create_wine_grapes:block/must/thick"
+  }
+}
