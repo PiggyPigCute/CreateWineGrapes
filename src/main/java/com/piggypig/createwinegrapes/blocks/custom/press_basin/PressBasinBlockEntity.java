@@ -63,7 +63,7 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
 
     public IFluidHandler getFluidHandler(Direction side) {
         if (side == null) {
-            return null;
+            return fluidCapability;
         }
         if (side == Direction.UP) {
             return null;

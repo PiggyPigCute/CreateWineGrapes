@@ -51,7 +51,7 @@ public class CrusherBlockEntity extends KineticBlockEntity implements IHaveGoggl
     }
 
     public IFluidHandler getFluidHandler(Direction side) {
-        if (side == Direction.DOWN) {
+        if (side == null || side == Direction.DOWN) {
             return fluidCapability;
         }
         return null;
