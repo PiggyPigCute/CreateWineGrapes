@@ -7,6 +7,8 @@ import com.piggypig.createwinegrapes.blocks.ModRenderers;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.items.ModCreativeTabs;
 import com.piggypig.createwinegrapes.data.ModDataComponents;
+import com.piggypig.createwinegrapes.integration.journeymap.TemperatureOverlayNetworking;
+import com.piggypig.createwinegrapes.integration.journeymap.VisitedChunkTracker;
 import com.piggypig.createwinegrapes.items.ModItems;
 import com.piggypig.createwinegrapes.recipes.ModRecipes;
 import com.piggypig.createwinegrapes.villagers.ModPoiTypes;
@@ -59,6 +61,9 @@ public class CreateWineGrapes {
         ModFluids.register();
         ModPoiTypes.register(modEventBus);
         ModVillagerProfessions.register(modEventBus);
+
+        TemperatureOverlayNetworking.register(modEventBus);
+        new VisitedChunkTracker().register();
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

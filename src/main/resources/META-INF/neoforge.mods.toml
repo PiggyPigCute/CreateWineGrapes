@@ -32,3 +32,9 @@ type="required"
 versionRange="[6.0.10,6.1.0)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.create_wine_grapes]]
+modId="journeymap"
+type="optional"
+ordering="NONE"
+side="BOTH"
