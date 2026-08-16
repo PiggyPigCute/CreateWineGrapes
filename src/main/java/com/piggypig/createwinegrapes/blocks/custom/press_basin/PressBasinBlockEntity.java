@@ -341,6 +341,8 @@ public class PressBasinBlockEntity extends KineticBlockEntity implements IHaveGo
                                     .style(ChatFormatting.BLUE)))
                     .forGoggles(tooltip, 1);
             isEmpty = false;
+
+            MustFluid.addGoggleTooltip(tooltip, isPlayerSneaking, fluidStack, 2);
         }
 
         if (isEmpty) {

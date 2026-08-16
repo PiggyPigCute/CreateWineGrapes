@@ -6,6 +6,7 @@ import com.piggypig.createwinegrapes.data.custom.MustData;
 import com.piggypig.createwinegrapes.data.custom.Residue;
 import com.piggypig.createwinegrapes.fluids.ModFluids;
 import com.piggypig.createwinegrapes.fluids.custom.MustFluid;
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +32,7 @@ import java.util.List;
  * the other 11 only remember the controller position and forward all fluid access to it,
  * so pipes/pumps/spouts can attach to any face of any of the 12 blocks.
  */
-public class VatBlockEntity extends SmartBlockEntity {
+public class VatBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
     public static final int CAPACITY_PER_BLOCK = 8000;
     public static final int TOTAL_CAPACITY =
@@ -125,6 +127,18 @@ public class VatBlockEntity extends SmartBlockEntity {
     }
 
     @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        FluidTank tank = getFluidHandler();
+        if (tank == null)
+            return false;
+
+        boolean added = containedFluidTooltip(tooltip, isPlayerSneaking, tank);
+        if (MustFluid.addVatGoggleTooltip(tooltip, isPlayerSneaking, tank.getFluid(), 2))
+            added = true;
+        return added;
+    }
+
+    @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
 
     @Override
@@ -180,6 +194,13 @@ public class VatBlockEntity extends SmartBlockEntity {
         }
     }
 
+    /**
+     * Mutates the tank's {@link FluidStack} in place (its data component), which the fluid tank
+     * itself has no way to notice - {@code setChanged()}/{@code sendData()} must be called
+     * explicitly so the client's synced copy (and thus the goggle overlay) picks up the new
+     * fermentation value. {@code /data get block} bypasses this since it reads the server's
+     * block entity directly, which is why it looked correct while goggles stayed stale.
+     */
     private void process() {
         assert tank != null;
         FluidStack fluidStack = tank.getFluid();
@@ -201,5 +222,8 @@ public class VatBlockEntity extends SmartBlockEntity {
                 )
                 .withHerbaceousness(currentHerbaceousness + herbaceousnessAdd)
         );
+
+        setChanged();
+        sendData();
     }
 }
